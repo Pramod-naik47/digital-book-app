@@ -13,8 +13,8 @@ export class SearchbookComponent implements OnInit {
   criteria : ReaderSearchCriteria = {
     BookTitle :'',
     Category :'',
-    Price: '',
-    UserId : '',
+    Price: 0,
+    Author : '',
     Publisher : ''
   };
 
@@ -23,11 +23,13 @@ export class SearchbookComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  SearchBook() {
-    this.searchBooksService.SearchBook()
-    .subscribe(
-      response => { this.books = response}
-    );
+  onSearchSubmit(){
+      this.searchBooksService.SearchBook(this.criteria)
+      .subscribe(
+        response => {
+           this.books = response;
+          console.log(this.books);
+        }
+      );
   }
-
 }
