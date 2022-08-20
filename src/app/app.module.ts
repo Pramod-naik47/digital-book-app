@@ -7,12 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchbookComponent } from './searchbook/searchbook.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    SearchbookComponent
+    SearchbookComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

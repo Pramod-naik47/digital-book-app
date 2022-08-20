@@ -4,24 +4,24 @@
             <div class="form-group col-md-6">
                 <label for="bookTitle">Book title</label>
                 <input type="text" class="form-control" name="bookTitle" id="bookTitle" placeholder="Book title"
-                    [(ngModel)]="criteria.BookTitle">
+                    [(ngModel)]="criteria.bookTitle">
             </div>
             <div class="form-group col-md-6">
                 <label for="author">Author</label>
                 <input type="text" class="form-control" name="author" id="author" placeholder="Author name"
-                    [(ngModel)]="criteria.Author">
+                    [(ngModel)]="criteria.author">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-6">
                 <label for="category">Category</label>
                 <input type="text" class="form-control" name="category" id="category" placeholder="Category"
-                    [(ngModel)]="criteria.Category">
+                    [(ngModel)]="criteria.category">
             </div>
             <div class="form-group col-md-6">
                 <label for="publisher">Publisher</label>
                 <input type="text" class="form-control" name="publisher" id="publisher" placeholder="Publisher"
-                    [(ngModel)]="criteria.Publisher">
+                    [(ngModel)]="criteria.publisher">
             </div>
         </div>
 
@@ -29,36 +29,45 @@
             <div class="form-group col-md-6">
                 <label for="bookPrice">Price</label>
                 <input type="number" class="form-control" name="bookPrice" id="bookPrice" placeholder="Price"
-                    [(ngModel)]="criteria.Price">
+                    [(ngModel)]="criteria.price">
             </div>
         </div>
         <!-- <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                    Check me out
-                </label>
-            </div>
-        </div> -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        Check me out
+                    </label>
+                </div>
+            </div> -->
         <div class="row">
-            <button id="btnSearch" 
-                class="btn btn-primary btn-block">Search</button>
+            <button id="btnSearch" class="btn btn-primary btn-block">Search</button>
         </div>
     </form>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th>Book Title</th>
-                    <th>Category</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let book of books">
-                    <td>{{criteria.BookTitle}}</td>
-                    <td>{{criteria.Category}}</td>
-                </tr>
-            </tbody>
-        </table>
+
+
+    <div class="row">
+        <div class="table-responsive">
+            <div class="table-responsive">
+                <table class="table table-striped border" *ngIf="books.length">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th>Book Title</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Publisher</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let book of books">
+                            <td>{{book.bookTitle}}</td>
+                            <td>{{book.category}}</td>
+                            <td>{{book.price}}</td>
+                            <td>{{book.publisher}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
-export interface ReaderSearchCriteria {
-    BookTitle :string;
-    Category :string;
-    Price: number;
-    Author : string;
-    Publisher : string;
+export interface Book {
+    bookTitle :string;
+    category :string;
+    price: number;
+    author : string;
+    publisher : string;
 }

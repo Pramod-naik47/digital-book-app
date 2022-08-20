@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ReaderSearchCriteria } from '../models/searchmodel';
+import { Book } from '../models/searchmodel';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +13,15 @@ export class SearchBooksService {
   constructor(private http: HttpClient) { }
 
   //Get all books
-  SearchBook(serachCriteria: ReaderSearchCriteria):Observable<ReaderSearchCriteria[]>{
+  SearchBook(serachCriteria: Book):Observable<Book[]>{
 
     let queryParams = new HttpParams();
-      queryParams = queryParams.append("bookTitle",serachCriteria.BookTitle);
-      queryParams = queryParams.append("category",serachCriteria.Category);
-      queryParams = queryParams.append("author",serachCriteria.Author);
-      queryParams = queryParams.append("price",serachCriteria.Price);
-      queryParams = queryParams.append("publisher",serachCriteria.Publisher);
+      queryParams = queryParams.append("bookTitle",serachCriteria.bookTitle);
+      queryParams = queryParams.append("category",serachCriteria.category);
+      queryParams = queryParams.append("author",serachCriteria.author);
+      queryParams = queryParams.append("price",serachCriteria.price);
+      queryParams = queryParams.append("publisher",serachCriteria.publisher);
 
-      return this.http.get<ReaderSearchCriteria[]>(this.baseUrl,{params:queryParams});
+      return this.http.get<Book[]>(this.baseUrl,{params:queryParams});
   }
 }

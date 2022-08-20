@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReaderSearchCriteria } from '../models/searchmodel';
+import { Book } from '../models/searchmodel';
 import { SearchBooksService } from '../services/searchbooks.services';
 
 @Component({
@@ -9,13 +9,13 @@ import { SearchBooksService } from '../services/searchbooks.services';
 })
 export class SearchbookComponent implements OnInit {
   title = "Search books";
-  books:ReaderSearchCriteria[] = [];
-  criteria : ReaderSearchCriteria = {
-    BookTitle :'',
-    Category :'',
-    Price: 0,
-    Author : '',
-    Publisher : ''
+  books: Book[] = [];
+  criteria : Book = {
+    bookTitle :'',
+    category :'',
+    price: 0,
+    author : '',
+    publisher : ''
   };
 
   constructor(private searchBooksService : SearchBooksService) { }
@@ -28,7 +28,6 @@ export class SearchbookComponent implements OnInit {
       .subscribe(
         response => {
            this.books = response;
-          console.log(this.books);
         }
       );
   }
