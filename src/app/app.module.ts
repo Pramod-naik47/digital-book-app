@@ -8,18 +8,25 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchbookComponent } from './searchbook/searchbook.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { Route, RouterModule } from '@angular/router';
+import { AuthorComponent } from './author/author.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SearchbookComponent,
-    SignInComponent
+    SignInComponent,
+    AuthorComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([
+      {path: '', component: SearchbookComponent},
+      {path: 'sign-in', component: SignInComponent}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

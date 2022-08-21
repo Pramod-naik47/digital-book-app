@@ -1,1 +1,32 @@
-<p>sign-in works!</p>
+<div class="container border" style="padding: 30px; margin-top: 8%;">
+    <form (ngSubmit) = "OnLoginFormSubmit()" >
+        <div class="row">
+            <div class="form-group row">
+                <div class="col-md-2 ">
+                    <label for="userName">User name</label>
+                </div>
+                <div class="col-md-4">
+                     <input type="text" id="userName" name="userName" [(ngModel)]="userObject.userName" placeholder="Enter user name" class="form-control"/>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top : 2%">
+            <div class="form-group row">
+                <div class="col-md-2">
+                    <label>Password</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="password" id="password" name="password" [(ngModel)]="userObject.password" placeholder="Enter user password" class="form-control"/>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top : 2%">
+            <div class="form-group row">
+                <div class="col-md-2"></div>
+                <div class="col-md-4" align="center">
+                     <button class="btn btn-primary btn-block"> Login </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
