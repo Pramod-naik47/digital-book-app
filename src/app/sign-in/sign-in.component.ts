@@ -32,7 +32,7 @@ export class SignInComponent implements OnInit {
    .subscribe(
     response => {
       this.token = response;
-      localStorage.setItem('currentUser', JSON.stringify({ token: this.token.token }));
+      localStorage.setItem('token', this.token.token);
     }
    )
   }
