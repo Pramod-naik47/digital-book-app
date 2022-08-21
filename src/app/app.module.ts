@@ -9,7 +9,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SearchbookComponent } from './searchbook/searchbook.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { Route, RouterModule } from '@angular/router';
-import { AuthorComponent } from './author/author.component'; 
+import { AuthorComponent } from './author/author.component';
+import { CreateBookComponent } from './create-book/create-book.component';
+import { CreateAccountComponent } from './create-account/create-account.component'; 
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { AuthorComponent } from './author/author.component';
     NavbarComponent,
     SearchbookComponent,
     SignInComponent,
-    AuthorComponent
+    AuthorComponent,
+    CreateBookComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,9 @@ import { AuthorComponent } from './author/author.component';
     FormsModule,
     RouterModule.forRoot([
       {path: '', component: SearchbookComponent},
-      {path: 'sign-in', component: SignInComponent}
+      {path: 'sign-in', component: SignInComponent},
+      {path: 'create-book', component: CreateBookComponent},
+      {path: 'author', component : AuthorComponent}
     ])
   ],
   providers: [],
