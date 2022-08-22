@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/loginmodel';
 import { LoginService } from '../services/loginservice';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-sign-in',
@@ -22,7 +24,7 @@ export class SignInComponent implements OnInit {
     message : ''
   };
 
-  constructor(private loginService : LoginService) { }
+  constructor(private loginService : LoginService, private router : Router) { }
 
   ngOnInit(): void {
   }
@@ -32,7 +34,9 @@ export class SignInComponent implements OnInit {
    .subscribe(
     response => {
       this.token = response;
+      localStorage.removeItem('token');
       localStorage.setItem('token', this.token.token);
+      this.router.navigate(['/author']);
     }
    )
   }

@@ -15,7 +15,9 @@ export class SearchbookComponent implements OnInit {
     category :'',
     price: 0,
     author : '',
-    publisher : ''
+    publisher : '',
+    content : '',
+    active : false
   };
 
   constructor(private searchBooksService : SearchBooksService) { }

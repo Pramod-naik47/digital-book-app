@@ -40,7 +40,7 @@
                     </label>
                 </div>
             </div> -->
-        <div class="row">
+        <div class="row col-md-3 offset-9">
             <button id="btnSearch" class="btn btn-primary btn-block">Search</button>
         </div>
     </form>
@@ -56,6 +56,8 @@
                             <th>Category</th>
                             <th>Price</th>
                             <th>Publisher</th>
+                            <th>Content</th>
+                            <th>Is Active</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,6 +66,8 @@
                             <td>{{book.category}}</td>
                             <td>{{book.price}}</td>
                             <td>{{book.publisher}}</td>
+                            <td>{{book.content}}</td>
+                            <td>{{book.active}}</td>
                         </tr>
                     </tbody>
                 </table>
