@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class CreateAccountComponent implements OnInit {
   user: User[] = [];
   userObject: User = {
+    userId : 0,
     userName: '',
     password: '',
     userType: ''
