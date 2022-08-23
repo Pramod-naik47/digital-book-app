@@ -11,6 +11,7 @@ export class SearchbookComponent implements OnInit {
   title = "Search books";
   books: Book[] = [];
   criteria : Book = {
+    bookId : 0,
     bookTitle :'',
     category :'',
     price: 0,
@@ -23,6 +24,7 @@ export class SearchbookComponent implements OnInit {
   constructor(private searchBooksService : SearchBooksService) { }
 
   ngOnInit(): void {
+    this.onSearchSubmit()
   }
 
   onSearchSubmit(){

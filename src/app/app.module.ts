@@ -11,7 +11,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { Route, RouterModule } from '@angular/router';
 import { AuthorComponent } from './author/author.component';
 import { CreateBookComponent } from './create-book/create-book.component';
-import { CreateAccountComponent } from './create-account/create-account.component'; 
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { PurchaseComponent } from './purchase/purchase.component'; 
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     SignInComponent,
     AuthorComponent,
     CreateBookComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    PurchaseComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
       {path: 'author', component : AuthorComponent},
       {path: 'create-account', component : CreateAccountComponent},
       {path: 'create-book/:bookId', component: CreateBookComponent},
+      {path: 'purchase/:bookId', component: PurchaseComponent},
     ])
   ],
   providers: [],
