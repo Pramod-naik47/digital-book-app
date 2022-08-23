@@ -22,19 +22,20 @@ export class CreateBookComponent implements OnInit {
     content: '',
     active: false
   }
+
+  token : string = ''
   constructor(private bookSerive: BookService, private router: Router, private activatedRout: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.token = localStorage.getItem('token')!;
     this.id = this.activatedRout.snapshot.params['bookId']
     this.isAddMode = !this.id;
-    console.log(this.isAddMode)
     this.GetBookById()
   }
 
   CreateBook() {
     if (this.isAddMode) {
-      console.log(this.bookObject)
-      this.bookSerive.CreateBook(this.bookObject, 'https://localhost:7151/api/v1/digitalbooks/author/createBook').
+      this.bookSerive.CreateBook(this.bookObject, 'https://localhost:7151/api/v1/digitalbooks/author/createBook', this.token).
         subscribe(
           resposnse => {
             this.router.navigate(['/author'])
@@ -47,7 +48,7 @@ export class CreateBookComponent implements OnInit {
 
   GetBookById() {
     if (!this.isAddMode) {
-      this.bookSerive.GetBookById('https://localhost:7151/api/v1/digitalbooks/author/getBookById', this.id)
+      this.bookSerive.GetBookById('https://localhost:7151/api/v1/digitalbooks/author/getBookById', this.id, this.token)
       .subscribe(
         response => {
           this.bookObject = response;
@@ -57,7 +58,7 @@ export class CreateBookComponent implements OnInit {
   }
 
   UpdateBook() {
-    this.bookSerive.UpdateBook(this.bookObject, 'https://localhost:7151/api/v1/digitalbooks/author/EditBook')
+    this.bookSerive.UpdateBook(this.bookObject, 'https://localhost:7151/api/v1/digitalbooks/author/EditBook', this.token)
     .subscribe(
       res => {
         this.bookObject  = {

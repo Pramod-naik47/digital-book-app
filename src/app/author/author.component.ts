@@ -19,15 +19,17 @@ export class AuthorComponent implements OnInit {
     content : '',
     active : false
   };
+  token : string = '';
 
   constructor(private bookService : BookService) { }
 
   ngOnInit(): void {
+    this.token = localStorage.getItem('token')!;
     this.GetBookForAuthor();
   }
   
   GetBookForAuthor(){
-    this.bookService.GetBookForAuthor('https://localhost:7151/api/v1/digitalbooks/author/getBooksForAuthor')
+    this.bookService.GetBookForAuthor('https://localhost:7151/api/v1/digitalbooks/author/getBooksForAuthor', this.token)
     .subscribe(
       response => {
         this.books = response;
@@ -36,7 +38,7 @@ export class AuthorComponent implements OnInit {
   }
 
   DeleteBook(book : Book) {
-    this.bookService.DeleteBook('https://localhost:7151/api/v1/digitalbooks/author/deleteBook', book)
+    this.bookService.DeleteBook('https://localhost:7151/api/v1/digitalbooks/author/deleteBook', book, this.token)
     .subscribe(
       response => {
         this.GetBookForAuthor();

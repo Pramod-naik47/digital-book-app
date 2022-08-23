@@ -8,35 +8,35 @@ import { Book } from '../models/book-model';
   })
   
   export class BookService {
-    token = localStorage.getItem('token');
-    
-    httpheader = new HttpHeaders(
-        {
-            'Authorization': 'Bearer ' + this.token,
-            'Content-Type': 'application/json'
-        })
-
     constructor(private http: HttpClient) { }
 
-    CreateBook(book: Book, browseUrl : string):Observable<Book> {
-        return this.http.post<Book>(browseUrl, book, {headers : this.httpheader});
+    CreateBook(book: Book, browseUrl : string, token : string):Observable<Book> {
+        return this.http.post<Book>(browseUrl, book, {headers : this.GetHeader(token)});
       }
 
-    GetBookForAuthor(url : string):Observable<Book[]> {
-        return this.http.get<Book[]>(url, {headers : this.httpheader})
+    GetBookForAuthor(url : string, token : string):Observable<Book[]> {
+        return this.http.get<Book[]>(url, {headers : this.GetHeader(token)})
     }
 
-    DeleteBook(url : string, bookId : Book):Observable<Book>{
-        return this.http.post<Book>(url, bookId, {headers : this.httpheader});
+    DeleteBook(url : string, bookId : Book, token : string):Observable<Book>{
+        return this.http.post<Book>(url, bookId, {headers : this.GetHeader(token)});
     }
 
-    GetBookById(url : string, bookId : number):Observable<Book> {
+    GetBookById(url : string, bookId : number, token : string):Observable<Book> {
         let queryParams = new HttpParams();
         queryParams = queryParams.append("bookId", bookId);
-        return this.http.get<Book>(url, {headers : this.httpheader, params : queryParams})
+        return this.http.get<Book>(url, {headers : this.GetHeader(token), params : queryParams})
     }
 
-    UpdateBook(book: Book, browseUrl : string):Observable<Book> {
-        return this.http.put<Book>(browseUrl, book, {headers : this.httpheader});
+    UpdateBook(book: Book, browseUrl : string, token : string):Observable<Book> {
+        return this.http.put<Book>(browseUrl, book, {headers : this.GetHeader(token)});
       }
+
+    GetHeader(token: string): HttpHeaders {
+        return (new HttpHeaders(
+            {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            }))
+    }
   }

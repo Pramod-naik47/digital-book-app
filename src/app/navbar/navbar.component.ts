@@ -12,9 +12,6 @@ export class NavbarComponent implements OnInit {
   constructor(private loginService : LoginService, private router : Router) { }
   
   ngOnInit(): void {
-    // if (this.IsUserAuthenticated() && this.GetUserType() == 'Author') {
-    //   this.userName = this.GetUserName();
-    // }
   }
 
   GetUserName() : any {

@@ -42,7 +42,7 @@ export class SignInComponent implements OnInit {
     response => {
       this.token = response;
       const decodedToken = this.jwtHelper.decodeToken(this.token.token);
-      console.log(decodedToken);
+
       this.isAuthenticated = this.token.isAuthenticated;
       this.currentUserId = decodedToken.userId;
       this.currentUserName = decodedToken.userName;

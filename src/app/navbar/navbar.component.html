@@ -14,7 +14,7 @@
               <li class="nav-item mx-0 mx-lg-1" *ngIf="!IsUserAuthenticated()">
                 <a [routerLink] = "['/sign-in']" class="nav-link py-3 px-0 px-lg-3 rounded" href="">Sign in</a>
             </li>
-            <li class="nav-item mx-0 mx-lg-1" *ngIf="IsUserAuthenticated()"> 
+            <li class="nav-item mx-0 mx-lg-1"> 
                 <a class="nav-link py-3 px-0 px-lg-3 rounded">Hello {{ this.GetUserName() }}</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1" *ngIf="IsUserAuthenticated()">
