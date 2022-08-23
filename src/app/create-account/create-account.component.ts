@@ -14,7 +14,9 @@ export class CreateAccountComponent implements OnInit {
     userId : 0,
     userName: '',
     password: '',
-    userType: ''
+    userType: '',
+    email : '',
+    phoneNumber : 0
   }
   constructor(private createAccountService : CreateAccountService, private route : Router) { }
 

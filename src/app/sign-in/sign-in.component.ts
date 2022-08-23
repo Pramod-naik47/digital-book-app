@@ -21,7 +21,9 @@ export class SignInComponent implements OnInit {
     userId : 0,
     userName: '',
     password: '',
-    userType: ''
+    userType: '',
+    email : '',
+    phoneNumber : 0
   }
 
   token : any = {

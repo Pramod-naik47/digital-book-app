@@ -3,4 +3,6 @@ export interface User {
     userName : string;
     password : string;
     userType : string;
+    email : string;
+    phoneNumber : number;
 }
