@@ -30,8 +30,8 @@
                             <td>{{book.publisher}}</td>
                             <td>{{book.content}}</td>
                             <td>{{book.active}}</td>
-                            <td><a type="button" ><i class="fa-solid fa-pen-to-square"></i></a></td>
-                            <td><a type="button" (click)="DeleteBook(book.bookId)"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a type="button" [routerLink] = "['/create-book', book.bookId]" ><i class="fa-solid fa-pen-to-square"></i></a></td>
+                            <td><a type="button" (click)="DeleteBook(book)"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                     </tbody>
                 </table>

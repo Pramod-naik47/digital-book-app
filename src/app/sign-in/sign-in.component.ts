@@ -9,6 +9,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
+
 export class SignInComponent implements OnInit {
   title = "Login user";
   isAuthenticated : boolean = false;
@@ -57,6 +58,9 @@ export class SignInComponent implements OnInit {
       } else {
         this.router.navigate([''])
       }
+    },
+    error => {
+      console.log("error");
     }
    )
   }

@@ -18,7 +18,6 @@ export class NavbarComponent implements OnInit {
   }
 
   GetUserName() : any {
-    console.log(this.GetUserType())
     return this.GetUserType() == "Author" ? this.loginService.GetUserName() : "Guest" ;
   }
 

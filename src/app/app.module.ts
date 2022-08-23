@@ -32,7 +32,8 @@ import { CreateAccountComponent } from './create-account/create-account.componen
       {path: 'sign-in', component: SignInComponent},
       {path: 'create-book', component: CreateBookComponent},
       {path: 'author', component : AuthorComponent},
-      {path: 'create-account', component : CreateAccountComponent}
+      {path: 'create-account', component : CreateAccountComponent},
+      {path: 'create-book/:bookId', component: CreateBookComponent},
     ])
   ],
   providers: [],

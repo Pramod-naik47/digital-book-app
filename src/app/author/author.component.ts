@@ -35,10 +35,11 @@ export class AuthorComponent implements OnInit {
     )
   }
 
-  DeleteBook(bookId : number) {
-    this.bookService.DeleteBook('https://localhost:7151/api/v1/digitalbooks/author/deleteBook', bookId)
+  DeleteBook(book : Book) {
+    this.bookService.DeleteBook('https://localhost:7151/api/v1/digitalbooks/author/deleteBook', book)
     .subscribe(
       response => {
+        this.GetBookForAuthor();
       }
      )
   }
