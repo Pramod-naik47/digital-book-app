@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../models/book-model';
 import { Payment } from '../models/purchase';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BookService } from '../services/book-service';
 import { PaymentService } from '../services/purchase-service';
+import { NotificationService } from '../services/notificationservice/notification.service';
 
 @Component({
   selector: 'app-purchase',
@@ -30,10 +30,11 @@ export class PurchaseComponent implements OnInit {
     bookId: 0
   };
 
+  message : any = '';
   constructor(private router : Router, 
               private activatedRoute : ActivatedRoute, 
-              private bookService : BookService,
-              private paymentService : PaymentService) { }
+              private paymentService : PaymentService,
+              private notificationService : NotificationService ) { }
 
   ngOnInit(): void {
     this.paramBookId = this.activatedRoute.snapshot.params['bookId']
@@ -42,7 +43,7 @@ export class PurchaseComponent implements OnInit {
   }
 
   GetBookById(){
-    this.bookService.GetBookById('https://localhost:7151/api/v1/digitalbooks/author/getBookById', this.paramBookId, this.token).
+    this.paymentService.GetBookById('https://localhost:7151/api/v1/digitalbooks/books/getBookById', this.paramBookId).
     subscribe(
       res => {
         this.bookObject = res;
@@ -59,7 +60,8 @@ export class PurchaseComponent implements OnInit {
     this.paymentService.PurchaseBook(this.paymentObject, 'https://localhost:7151/api/v1/digitalbooks/books/purchaseBook')
     .subscribe(
       res => {
-        console.log(JSON.stringify(res));
+        this.message = res
+        this.notificationService.showSuccess(this.message.Join(''), "Book app");
         this.router.navigate([''])
       }
     )

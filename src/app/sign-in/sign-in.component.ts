@@ -46,7 +46,7 @@ export class SignInComponent implements OnInit {
    .subscribe(
     response => {
       this.token = response;
-      this.notificationService.showSuccess("Logged in sucessfully", "Book app")
+      this.notificationService.showSuccess(this.token.message, "Book app")
       const decodedToken = this.jwtHelper.decodeToken(this.token.token);
 
       this.isAuthenticated = this.token.isAuthenticated;
