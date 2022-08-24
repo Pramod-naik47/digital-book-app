@@ -12,7 +12,8 @@ import { Route, RouterModule } from '@angular/router';
 import { AuthorComponent } from './author/author.component';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
-import { PurchaseComponent } from './purchase/purchase.component'; 
+import { PurchaseComponent } from './purchase/purchase.component';
+import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component'; 
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PurchaseComponent } from './purchase/purchase.component';
     AuthorComponent,
     CreateBookComponent,
     CreateAccountComponent,
-    PurchaseComponent
+    PurchaseComponent,
+    PurchaseHistoryComponent
   ],
   imports: [
     BrowserModule,
