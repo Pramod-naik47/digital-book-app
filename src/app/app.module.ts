@@ -15,6 +15,9 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { PurchaseComponent } from './purchase/purchase.component';
 import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component'; 
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +34,8 @@ import { PurchaseHistoryComponent } from './purchase-history/purchase-history.co
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     RouterModule.forRoot([
       {path: '', component: SearchbookComponent},
       {path: 'sign-in', component: SignInComponent},

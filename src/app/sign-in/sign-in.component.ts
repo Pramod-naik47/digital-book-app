@@ -3,6 +3,7 @@ import { User } from '../models/loginmodel';
 import { LoginService } from '../services/loginservice';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { NotificationService } from '../services/notificationservice/notification.service'
 
 @Component({
   selector: 'app-sign-in',
@@ -32,7 +33,9 @@ export class SignInComponent implements OnInit {
     message : ''
   };
 
-  constructor(private loginService : LoginService, private router : Router) { }
+  constructor(private loginService : LoginService, 
+              private router : Router,
+              private notificationService : NotificationService) { }
 
   jwtHelper = new JwtHelperService();
   ngOnInit(): void {
@@ -43,6 +46,7 @@ export class SignInComponent implements OnInit {
    .subscribe(
     response => {
       this.token = response;
+      this.notificationService.showSuccess("Logged in sucessfully", "Book app")
       const decodedToken = this.jwtHelper.decodeToken(this.token.token);
 
       this.isAuthenticated = this.token.isAuthenticated;
