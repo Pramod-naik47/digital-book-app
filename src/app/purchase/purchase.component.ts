@@ -27,7 +27,8 @@ export class PurchaseComponent implements OnInit {
   paymentObject: Payment = {
     paymentId: 0,
     email: '',
-    bookId: 0
+    bookId: 0,
+    paymentDate : new Date
   };
 
   message : any = '';
@@ -50,7 +51,8 @@ export class PurchaseComponent implements OnInit {
         this.paymentObject = {
           paymentId: 0,
           email: '',
-          bookId: res.bookId
+          bookId: res.bookId,
+          paymentDate : new Date
         };
       }
     )
@@ -66,5 +68,4 @@ export class PurchaseComponent implements OnInit {
       }
     )
   }
-
 }

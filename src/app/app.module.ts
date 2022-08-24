@@ -17,6 +17,7 @@ import { PurchaseHistoryComponent } from './purchase-history/purchase-history.co
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ModalModule } from 'ngx-bootstrap/modal';  
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    ModalModule.forRoot(),  
     RouterModule.forRoot([
       {path: '', component: SearchbookComponent},
       {path: 'sign-in', component: SignInComponent},
@@ -44,6 +46,7 @@ import { ToastrModule } from 'ngx-toastr';
       {path: 'create-account', component : CreateAccountComponent},
       {path: 'create-book/:bookId', component: CreateBookComponent},
       {path: 'purchase/:bookId', component: PurchaseComponent},
+      {path: 'purchase-history', component: PurchaseHistoryComponent},
     ])
   ],
   providers: [],

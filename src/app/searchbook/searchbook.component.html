@@ -1,4 +1,7 @@
-<div class="container" style="margin-top: 8%">
+<div style="margin-top: 5%;margin-right: 2%;" align="right">
+    <a class="btn btn-primary" type="button" [routerLink] = "['/purchase-history']"> check purchase history</a>
+</div>
+<div class="container" >
     <form (ngSubmit)="onSearchSubmit()">
         <div class="row">
             <div class="form-group col-md-6">
@@ -61,7 +64,7 @@
                             <td>{{book.publisher}}</td>
                             <td>{{book.content}}</td>
                             <td>{{book.active}}</td>
-                            <td><a class="btn btn-info  text-white" type="=button" [routerLink] = "['/purchase', book.bookId]">Purchase</a></td>
+                            <td><a class="btn btn-info  text-white" type="button" [routerLink] = "['/purchase', book.bookId]">Purchase</a></td>
                         </tr>
                     </tbody>
                 </table>
