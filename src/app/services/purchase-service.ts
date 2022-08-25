@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Book } from '../models/book-model';
+import { VBookPayment } from '../models/book-payment-model';
 import { User } from '../models/loginmodel';
 import { Payment } from '../models/purchase';
 
@@ -22,9 +23,16 @@ export class PaymentService {
     return this.http.get<Book>(url, { params: queryParams });
   }
 
-  GetPymemtHistory(url: string, email : string): Observable<Payment[]> {
+  GetBookByIdForPayment(url: string, bookId: number): Observable<VBookPayment> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("bookId", bookId);
+    return this.http.get<VBookPayment>(url, { params: queryParams });
+  }
+
+
+  GetPymemtHistory(url: string, email : string): Observable<VBookPayment[]> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("email", email);
-    return this.http.get<Payment[]>(url, { params: queryParams });
+    return this.http.get<VBookPayment[]>(url, { params: queryParams });
   }
 }

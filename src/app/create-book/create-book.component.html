@@ -1,6 +1,6 @@
 <div class="container border " style="padding: 30px; margin-top: 8%">
     <div class="row col-md-12">
-        <h2 class="text-info">Create Book</h2>
+        <h2 class="text-info"> {{this.addOrUpdateText}}</h2>
     </div>
     <br/>
     <form>
@@ -54,7 +54,7 @@
         </div>
         <div class="form-group row mt-3">
             <div class="col-md-3 offset-4">
-                <a type="button" (click)= 'CreateBook()' class="form-control btn btn-info">Create Book</a>
+                <a type="button" (click)= 'CreateBook()' class="form-control btn btn-info"> {{this.addOrUpdateText}}</a>
             </div>
             <div class="col-md-3">
                 <a type="button" class="form-control btn btn-primary" [routerLink] = "['/author']">Back</a>

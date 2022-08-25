@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CreateBookComponent implements OnInit {
   title = "Create book";
   id: number = 0
+  addOrUpdateText = '';
   isAddMode: boolean = false
   book: Book[] = [];
   bookObject: Book = {
@@ -28,8 +29,14 @@ export class CreateBookComponent implements OnInit {
 
   ngOnInit(): void {
     this.token = localStorage.getItem('token')!;
-    this.id = this.activatedRout.snapshot.params['bookId']
+    this.id = this.activatedRout.snapshot.params['bookId'];
     this.isAddMode = !this.id;
+    if (this.isAddMode) {
+      this.addOrUpdateText = "Create Book";
+    } else {
+      this.addOrUpdateText = "Update book";
+    }
+     
     this.GetBookById()
   }
 

@@ -30,6 +30,7 @@
                     <thead>
                         <tr class="table-secondary">
                             <th>Book Title</th>
+                            <th>Price</th>
                             <th>Email</th>
                             <th>Paymemt date</th>
                             <th></th>
@@ -37,10 +38,11 @@
                     </thead>
                     <tbody>
                         <tr *ngFor = "let pay of payments">
-                            <td>{{pay.bookId}}</td>
+                            <td>{{pay.bookTitle}}</td>
+                            <td>{{pay.price}}</td>
                             <td>{{pay.email}}</td>
                             <td>{{pay.paymentDate}}</td>
-                            <td><a class="btn btn-info  text-white" type="button" (click)="OpenInvoiceModel(template, pay.bookId)">Invoice</a></td>
+                            <td><a class="btn btn-info  text-white" type="button"  (click)="OpenInvoiceModel(template, pay.bookId)">Invoice</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -65,8 +67,8 @@
                             <td style="width: 150px">Price</td>
                         </tr>
                         <tr>
-                            <td style="width: 150px"> {{ bookObject.bookTitle }}</td>
-                            <td style="width: 150px">{{ bookObject.price }}</td>
+                            <td style="width: 150px"> {{ paymentObject.bookTitle }}</td>
+                            <td style="width: 150px">{{ paymentObject.price }}</td>
                         </tr>
                     </table>
                 </div>

@@ -62,8 +62,8 @@ export class PurchaseComponent implements OnInit {
     this.paymentService.PurchaseBook(this.paymentObject, 'https://localhost:7151/api/v1/digitalbooks/books/purchaseBook')
     .subscribe(
       res => {
-        this.message = res
-        this.notificationService.showSuccess(this.message.Join(''), "Book app");
+        this.message = res;
+        this.notificationService.showSuccess(this.message.join(''), "Book app");
         this.router.navigate([''])
       }
     )
