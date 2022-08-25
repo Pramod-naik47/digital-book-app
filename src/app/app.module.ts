@@ -18,6 +18,7 @@ import { PurchaseHistoryComponent } from './purchase-history/purchase-history.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';  
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ModalModule.forRoot(),  
+    NgxPrintModule,
     RouterModule.forRoot([
       {path: '', component: SearchbookComponent},
       {path: 'sign-in', component: SignInComponent},
