@@ -4,6 +4,7 @@ import { Payment } from '../models/purchase';
 import { PaymentService } from '../services/purchase-service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';  
 import { VBookPayment } from '../models/book-payment-model';
+import { NotificationService } from '../services/notificationservice/notification.service';
 
 @Component({
   selector: 'app-purchase-history',
@@ -26,13 +27,16 @@ export class PurchaseHistoryComponent implements OnInit {
     email: '',
     paymentDate: new Date
 }
+message: any ='';
 
   modalRef!: BsModalRef; 
   constructor(private purchaseService : PaymentService,
-             private modalService: BsModalService) { }
+             private modalService: BsModalService,
+             private notificationService : NotificationService) { }
 
   ngOnInit(): void {
   }
+  
 
   GetPaymentHistory(){
     this.purchaseService.GetPymemtHistory('https://localhost:7151/api/v1/digitalbooks/books/getPaymentHistory', this.paymentObject.email).
@@ -55,5 +59,25 @@ export class PurchaseHistoryComponent implements OnInit {
           );
         }
       )
+  }
+
+  GetRefund(paymentId: number, paymentDate : Date) {
+    debugger;
+     let purchaseDate = new Date(paymentDate);
+     let currentDate = new Date();
+     let timedifferenceInSecond  = Math.round((currentDate.getTime() -purchaseDate.getTime())/1000)
+
+     if (timedifferenceInSecond < 86400){
+      this.purchaseService.GetRefund('https://localhost:7151/api/v1/digitalbooks/books/getRefund', paymentId)
+      .subscribe(
+        res => {
+          this.message = res;
+            this.notificationService.showSuccess(this.message.join(''),"Book App");
+            this.GetPaymentHistory();
+        }
+      )
+     } else {
+        this.notificationService.showWarning("After 24 hours no refund will be given", "Book app");
+     }
   }
 }

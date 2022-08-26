@@ -34,6 +34,7 @@
                             <th>Email</th>
                             <th>Paymemt date</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,6 +44,7 @@
                             <td>{{pay.email}}</td>
                             <td>{{pay.paymentDate}}</td>
                             <td><a class="btn btn-info  text-white" type="button"  (click)="OpenInvoiceModel(template, pay.bookId)">Invoice</a></td>
+                            <td><a class="btn btn-info  text-white" type="button"  (click)="GetRefund(pay.paymentId, pay.paymentDate)">Refund</a></td>
                         </tr>
                     </tbody>
                 </table>
