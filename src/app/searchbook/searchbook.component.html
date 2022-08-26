@@ -12,7 +12,7 @@
             <div class="form-group col-md-6">
                 <label for="author">Author</label>
                 <input type="text" class="form-control" name="author" id="author" placeholder="Author name"
-                    [(ngModel)]="criteria.author">
+                    [(ngModel)]="criteria.userName">
             </div>
         </div>
         <div class="row">
@@ -51,7 +51,9 @@
                             <th>Category</th>
                             <th>Price</th>
                             <th>Publisher</th>
-                            <th>Content</th>
+                            <th>Author</th>
+                            <th>Publish date</th>
+                            <th>Created date</th>
                             <th>Is Active</th>
                             <th></th>
                         </tr>
@@ -62,7 +64,9 @@
                             <td>{{book.category}}</td>
                             <td>{{book.price}}</td>
                             <td>{{book.publisher}}</td>
-                            <td>{{book.content}}</td>
+                            <td>{{book.userName}}</td>
+                            <td>{{book.publishDate}}</td>
+                            <td>{{book.createdDate}}</td>
                             <td>{{book.active}}</td>
                             <td><a class="btn btn-info  text-white" type="button" [routerLink] = "['/purchase', book.bookId]">Purchase</a></td>
                         </tr>
