@@ -35,4 +35,11 @@ export class PaymentService {
     queryParams = queryParams.append("email", email);
     return this.http.get<VBookPayment[]>(url, { params: queryParams });
   }
+
+  
+  GetRefund(url: string, paymentId: number): Observable<Payment> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("paymentId", paymentId);
+    return this.http.delete<Payment>(url, { params: queryParams });
+  }
 }
