@@ -62,7 +62,6 @@ message: any ='';
   }
 
   GetRefund(paymentId: number, paymentDate : Date) {
-    debugger;
      let purchaseDate = new Date(paymentDate);
      let currentDate = new Date();
      let timedifferenceInSecond  = Math.round((currentDate.getTime() -purchaseDate.getTime())/1000)
@@ -79,5 +78,19 @@ message: any ='';
      } else {
         this.notificationService.showWarning("After 24 hours no refund will be given", "Book app");
      }
+  }
+
+  ReadBook(template: TemplateRef<any>, bookId: number) {
+    this.purchaseService.GetBookByIdForPayment('https://localhost:7151/api/v1/digitalbooks/books/getBookByIdForPayment', bookId).
+      subscribe(
+        res => {
+          this.paymentObject = res;
+
+          this.modalRef = this.modalService.show(
+            template,
+            Object.assign({}, { class: 'gray modal-lg' })
+          );
+        }
+      )
   }
 }

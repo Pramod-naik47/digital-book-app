@@ -34,7 +34,6 @@
                             <th>Email</th>
                             <th>Paymemt date</th>
                             <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,8 +42,11 @@
                             <td>{{pay.price}}</td>
                             <td>{{pay.email}}</td>
                             <td>{{pay.paymentDate}}</td>
-                            <td><a class="btn btn-info  text-white" type="button"  (click)="OpenInvoiceModel(template, pay.bookId)">Invoice</a></td>
-                            <td><a class="btn btn-info  text-white" type="button"  (click)="GetRefund(pay.paymentId, pay.paymentDate)">Refund</a></td>
+                            <td>
+                                <a class="btn btn-info  text-white" type="button"  (click)="OpenInvoiceModel(template, pay.bookId)">Invoice</a>
+                                <a class="btn btn-info  text-white" type="button"  (click)="GetRefund(pay.paymentId, pay.paymentDate)" style="margin-left : 4px">Refund</a>
+                                <a class="btn btn-info  text-white" type="button"  (click)="ReadBook(readBook,  pay.bookId)" style="margin-left : 4px">Read book</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -81,6 +83,26 @@
           <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>  
         </div>  
       </ng-template>  
+
+      <ng-template #readBook >  
+        <div class="modal-header">  
+          <h4 class="modal-title pull-left">{{ paymentObject.bookTitle }}</h4> 
+          
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">  
+            <span aria-hidden="true">×</span>  
+          </button>  
+        </div>  
+        <div class="modal-body" id="invoiceModel">
+            <div >
+                <div align="center">
+                   <p>{{ paymentObject.bookTitle }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">  
+          <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>  
+        </div>  
+      </ng-template> 
 
 
 </div>

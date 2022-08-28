@@ -15,9 +15,11 @@
                             <th>Book Title</th>
                             <th>Category</th>
                             <th>Price</th>
-                            <th>Publisher</th>
                             <th>Content</th>
+                            <th>Publisher</th>
                             <th>Is Active</th>
+                            <th>Created Date</th>
+                            <th>Published Date</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -27,11 +29,13 @@
                             <td>{{book.bookTitle}}</td>
                             <td>{{book.category}}</td>
                             <td>{{book.price}}</td>
-                            <td>{{book.publisher}}</td>
                             <td>{{book.content}}</td>
+                            <td>{{book.publisher}}</td>
                             <td>{{book.active}}</td>
+                            <td>{{book.createdDate}}</td>
+                            <td>{{book.publishDate}}</td>
                             <td><a type="button" [routerLink] = "['/create-book', book.bookId]" ><i class="fa-solid fa-pen-to-square"></i></a></td>
-                            <td><a type="button" (click)="DeleteBook(book)"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a type="button" (click)="DeleteBook(book.bookId)"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                     </tbody>
                 </table>

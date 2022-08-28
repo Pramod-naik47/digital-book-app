@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../models/book-model';
 import { BookService } from '../services/book-service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NotificationService } from '../services/notificationservice/notification.service';
 
 @Component({
   selector: 'app-create-book',
@@ -24,8 +25,11 @@ export class CreateBookComponent implements OnInit {
     active: false
   }
 
-  token : string = ''
-  constructor(private bookSerive: BookService, private router: Router, private activatedRout: ActivatedRoute) { }
+  token : string = '';
+  message : any = '';
+  constructor(private bookSerive: BookService, private router: Router,
+              private activatedRout: ActivatedRoute,
+              private notificationService : NotificationService) { }
 
   ngOnInit(): void {
     this.token = localStorage.getItem('token')!;
@@ -45,7 +49,10 @@ export class CreateBookComponent implements OnInit {
       this.bookSerive.CreateBook(this.bookObject, 'https://localhost:7151/api/v1/digitalbooks/author/createBook', this.token).
         subscribe(
           resposnse => {
+            this.message = resposnse;
+            this.notificationService.showSuccess(this.message.join(''), "Book app")
             this.router.navigate(['/author'])
+            this.message = '';
           }
         )
     } else {
@@ -68,6 +75,7 @@ export class CreateBookComponent implements OnInit {
     this.bookSerive.UpdateBook(this.bookObject, 'https://localhost:7151/api/v1/digitalbooks/author/EditBook', this.token)
     .subscribe(
       res => {
+        this.message = res;
         this.bookObject  = {
           bookId: 0,
           bookTitle: '',
@@ -77,8 +85,9 @@ export class CreateBookComponent implements OnInit {
           content: '',
           active: false
         };
-
+        this.notificationService.showSuccess(this.message.join(''), "Book app")
         this.router.navigate(['/author']);
+        this.message = '';
       }
     )
   }
