@@ -1,12 +1,12 @@
 <div class="container border" style="padding: 30px; margin-top: 8%;">
-    <form  (ngSubmit)="OnLoginFormSubmit()">
+    <form  (ngSubmit)="OnLoginFormSubmit()" ngNativeValidate>
         <div class="row mt-3">
             <div class="form-group row">
                 <div class="col-md-1 offset-3">
                     <label for="userName">User name</label>
                 </div>
                 <div class="col-md-4">
-                     <input type="text" [(ngModel)]="userObject.userName" id="userName" name="userName"  placeholder="Enter user name" class="form-control"/>
+                     <input type="text" [(ngModel)]="userObject.userName" id="userName" name="userName"  placeholder="Enter user name" class="form-control" required/>
                 </div>
                 <div class="col-md-3"></div>
             </div>
