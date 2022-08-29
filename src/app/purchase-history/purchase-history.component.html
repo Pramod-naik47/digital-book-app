@@ -1,26 +1,29 @@
 
 <div class="container border" style="margin-top: 8%">
     <div class="row">
-        <div class="row mt-3">
-            <div class="form-group row">
-                <div class="col-md-1 offset-3">
-                    <label for="userName">Email</label>
+        <form ngNativeValidate>
+            <div class="row mt-3">
+                <div class="form-group row">
+                    <div class="col-md-1 offset-3">
+                        <label for="userName">Email</label>
+                    </div>
+                    <div class="col-md-4">
+                         <input type="text"  id="email" name="email"  [(ngModel)]="paymentObject.email"  placeholder="Enter email" class="form-control" required/>
+                    </div>
+                    <div class="col-md-3"></div>
                 </div>
-                <div class="col-md-4">
-                     <input type="text"  id="email" name="email"  [(ngModel)]="paymentObject.email"  placeholder="Enter email" class="form-control"/>
-                </div>
-                <div class="col-md-3"></div>
             </div>
-        </div>
-        <div class="row mt-3">
-            <div class="form-group row">
-                <div class="col-md-5"></div>
-                <div class="col-md-2" align="center">
-                     <button class="btn btn-primary btn-block form-control" (click)="GetPaymentHistory()" > Search  </button>
+            <div class="row mt-3">
+                <div class="form-group row">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2" align="center">
+                         <button class="btn btn-primary btn-block form-control" (click)="GetPaymentHistory()" > Search  </button>
+                    </div>
+                    <div class="col-md-5"></div>
                 </div>
-                <div class="col-md-5"></div>
             </div>
-        </div>
+        </form>
+        
     </div>
     <br/>
     <div class="row" *ngIf="payments.length">

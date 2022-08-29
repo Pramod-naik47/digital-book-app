@@ -1,5 +1,5 @@
 <div class="container border" style="padding: 30px; margin-top: 8%;">
-    <form >
+    <form (ngSubmit)="PurchaseBook()" ngNativeValidate>
         <div class="row mt-3">
             <div class="form-group row">
                 <div class="col-md-1 offset-3">
@@ -17,7 +17,7 @@
                     <label for="email">Email</label>
                 </div>
                 <div class="col-md-4">
-                     <input type="text" [(ngModel)]="paymentObject.email" id="email" name="email"  class="form-control"/>
+                     <input type="text" [(ngModel)]="paymentObject.email" id="email" name="email"  class="form-control" required/>
                 </div>
                 <div class="col-md-3"></div>
             </div>
@@ -37,7 +37,7 @@
             <div class="form-group row">
                 <div class="col-md-5"></div>
                 <div class="col-md-2" align="center">
-                     <button class="btn btn-primary btn-block form-control" (click)="PurchaseBook()"> Purchase </button>
+                     <button class="btn btn-primary btn-block form-control"> Purchase </button>
                 </div>
                 <div class="col-md-5"></div>
             </div>

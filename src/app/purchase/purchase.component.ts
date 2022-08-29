@@ -63,7 +63,7 @@ export class PurchaseComponent implements OnInit {
     .subscribe(
       res => {
         this.message = res;
-        this.notificationService.showSuccess(this.message.join(''), "Book app");
+        this.notificationService.showSuccess("Purchase successfull", "Book app");
         this.router.navigate([''])
       }
     )
