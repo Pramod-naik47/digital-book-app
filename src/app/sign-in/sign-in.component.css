@@ -1,0 +1,12 @@
+.main-div mat-card {
+    padding:  0px;
+    margin-top:  2%;
+}
+
+.login-form {
+    padding: 20px;
+}
+
+.error-message {
+    color: red;
+}

@@ -4,6 +4,7 @@ import { LoginService } from '../services/loginservice';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { NotificationService } from '../services/notificationservice/notification.service'
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,7 +13,6 @@ import { NotificationService } from '../services/notificationservice/notificatio
 })
 
 export class SignInComponent implements OnInit {
-  title = "Login user";
   isAuthenticated : boolean = false;
   currentUserName: string = '';
   currentUserId : string = '';
@@ -38,9 +38,10 @@ export class SignInComponent implements OnInit {
               private notificationService : NotificationService) { }
 
   jwtHelper = new JwtHelperService();
+  
   ngOnInit(): void {
   }
-
+  
   OnLoginFormSubmit() {
    this.loginService.ValidateUser(this.userObject)
    .subscribe(

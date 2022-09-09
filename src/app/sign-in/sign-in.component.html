@@ -1,4 +1,4 @@
-<div class="container border" style="padding: 30px; margin-top: 8%;">
+<!-- <div class="container border" style="padding: 30px; margin-top: 2%;">
     <form  (ngSubmit)="OnLoginFormSubmit()" ngNativeValidate>
         <div class="row mt-3">
             <div class="form-group row">
@@ -32,4 +32,30 @@
             </div>
         </div>
     </form>
+</div> -->
+
+<div fxLayoutAlign="center center" class="main-div">
+    <mat-card fxFlex="25">
+        <mat-toolbar color="primary">Login</mat-toolbar>
+        <form class="login-form" fxLayoutAlign="streatch" fxLayout="column" (ngSubmit)="OnLoginFormSubmit()" #loginForm="ngForm">
+            <mat-form-field appearance="fill">
+                <mat-label>User name</mat-label>
+                <input matInput placeholder="Username" type="text" [(ngModel)]="userObject.userName" name="userName" #userName="ngModel" required>
+                <div class="error-message" *ngIf="(userName.touched || loginForm.submitted ) && userName.errors?.['required']">
+                    Please enter user name
+                </div>
+            </mat-form-field>
+            
+
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="Password" name="password" [(ngModel)]="userObject.password" #password="ngModel" required>
+                <div class="error-message" *ngIf="(password.touched || loginForm.submitted ) && password.errors?.['required']">
+                    Please enter password
+                  </div>
+            </mat-form-field>
+            <button mat-raised-button type="submit" [disabled]="loginForm.invalid">Login</button>
+        </form>
+    </mat-card>
 </div>
+

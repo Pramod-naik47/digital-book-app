@@ -1,71 +1,55 @@
-<div class="container border" style="padding: 30px; margin-top: 8%;">
-    <form  (ngSubmit)="onCreateAccountFormSubmit()" ngNativeValidate>
-        <div class="row mt-3">
-            <div class="form-group row">
-                <div class="col-md-1 offset-3">
-                    <label for="userName">User name</label>
+<div fxLayoutAlign="center center" class="main-div">
+    <mat-card fxFlex="35">
+        <mat-toolbar color="primary">Sign Up</mat-toolbar>
+        <form class="login-form" fxLayoutAlign="streatch" fxLayout="column" (ngSubmit)="onCreateAccountFormSubmit()" #signUpForm="ngForm">
+            <mat-form-field appearance="fill">
+                <mat-label>User name</mat-label>
+                <input matInput placeholder="Username" type="text" [(ngModel)]="userObject.userName" name="userName" #userName="ngModel" required>
+                <div class="error-message" *ngIf="(userName.touched || signUpForm.submitted )&& userName.errors?.['required']">
+                    Please enter user name
                 </div>
-                <div class="col-md-4">
-                     <input type="text" [(ngModel)]="userObject.userName" id="userName" name="userName"  placeholder="Enter user name" class="form-control" required/>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="Password" name="password"[(ngModel)]="userObject.password" #password="ngModel" required>
+                <div class="error-message" *ngIf="(password.touched || signUpForm.submitted ) && password.errors?.['required']">
+                    Please enter user name
                 </div>
-                <div class="col-md-3"></div>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="form-group row">
-                <div class="col-md-1 offset-3">
-                    <label for="password">Password</label>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>User type</mat-label>
+                <mat-select [(ngModel)]="userObject.userType" name="userType" #userType="ngModel" required>
+                    <mat-option *ngFor="let type of userTypes" [value]="type.value">
+                        {{type.displayLabel}}
+                    </mat-option>
+                </mat-select>
+                <div class="error-message" *ngIf="(userType.touched || signUpForm.submitted ) && userType.errors?.['required']">
+                    Please select user type
                 </div>
-                <div class="col-md-4">
-                    <input type="password" id="password" name="password" [(ngModel)]="userObject.password"  placeholder="Enter user password" class="form-control" required/>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" placeholder="Email" name="email" [(ngModel)]="userObject.email" #email="ngModel"
+                pattern="^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$" required>
+                <div class="error-message" *ngIf="(email.touched || signUpForm.submitted ) && email.errors?.['required']">
+                    Please enter email
                 </div>
-                <div class="col-md-3"></div>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="form-group row">
-                <div class="col-md-1 offset-3">
-                    <label>User type</label>
+                <div class="error-message" *ngIf="(email.touched || signUpForm.submitted ) && email.errors?.['pattern']">
+                    Please enter valid email
                 </div>
-                <div class="col-md-4">
-                    <select id="userType" [(ngModel)]="userObject.userType" name="userType" class="form-control" style="text-transform: capitalize" required>
-                        <option selected  value="Author">Author </option>
-                        <option value="Reader">Reader</option>
-                    </select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Phone number</mat-label>
+                <input matInput type="number" placeholder="Phone number" name="phoneNumber" [(ngModel)]="userObject.phoneNumber" #phoneNumber="ngModel"
+                pattern="^((\\+91-?)|0)?[0-9]{10}$" required>
+                <div class="error-message" *ngIf="(phoneNumber.touched || signUpForm.submitted ) && phoneNumber.errors?.['required']">
+                    Please enter email
                 </div>
-                <div class="col-md-3"></div>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="form-group row">
-                <div class="col-md-1 offset-3">
-                    <label for="email">email</label>
+                <div class="error-message" *ngIf="(phoneNumber.touched || signUpForm.submitted ) && phoneNumber.errors?.['pattern']">
+                    Please enter valid phone number
                 </div>
-                <div class="col-md-4">
-                    <input type="email" id="email" name="email" [(ngModel)]="userObject.email"  placeholder="Enter email" class="form-control" required/>
-                </div>
-                <div class="col-md-3"></div>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="form-group row">
-                <div class="col-md-1 offset-3">
-                    <label for="phoneNumber">Phone number</label>
-                </div>
-                <div class="col-md-4">
-                    <input type="phoneNumber" id="phoneNumber" name="phoneNumber" [(ngModel)]="userObject.phoneNumber"  placeholder="Enter user phone Number" class="form-control" required/>
-                </div>
-                <div class="col-md-3"></div>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="form-group row">
-                <div class="col-md-5"></div>
-                <div class="col-md-2" align="center">
-                     <button class="btn btn-primary btn-block form-control"> Create Account </button>
-                </div>
-                <div class="col-md-5"></div>
-            </div>
-        </div>
-    </form>
+            </mat-form-field>
+            <button mat-raised-button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+        </form>
+    </mat-card>
 </div>
