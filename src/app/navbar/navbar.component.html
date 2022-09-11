@@ -27,17 +27,17 @@
 
 <div>
     <mat-toolbar color="primary">
-      <mat-toolbar-row>
+      <mat-toolbar-row >
         <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
           <mat-icon>menu</mat-icon>
         </button>
         <span>DigitalBookApp</span>
         <span class="menu-spacer"></span>
         <div fxShow="true" fxHide.lt-md>
-          <a [routerLink] = "['/create-account']"   mat-button *ngIf="!IsUserAuthenticated()">Signup</a>
-          <a [routerLink] = "['/sign-in']"   mat-button *ngIf="!IsUserAuthenticated()">Sign in</a>
-          <a >Hello {{ this.GetUserName() }}</a>
-          <a  mat-button (click) = "LogOutCurrentUser()" *ngIf="IsUserAuthenticated()"> Log  out</a>
+          <a [routerLink] = "['/create-account']"   mat-button *ngIf="!IsUserAuthenticated()"  routerLinkActive="router-link-active no-border">Signup</a>
+          <a [routerLink] = "['/sign-in']"   mat-button *ngIf="!IsUserAuthenticated()"  routerLinkActive="router-link-active no-border">Sign in</a>
+          <a  *ngIf="IsUserAuthenticated()">Hello {{ this.GetUserName() }}</a>
+          <a  mat-button (click) = "LogOutCurrentUser()" *ngIf="IsUserAuthenticated()"  routerLinkActive="router-link-active no-border"> Log  out</a>
         </div>
       </mat-toolbar-row>
     </mat-toolbar>
@@ -48,8 +48,8 @@
           <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
           <a [routerLink] = "['/create-account']"  *ngIf="!IsUserAuthenticated()">Signup</a>
           <a [routerLink] = "['/sign-in']"  href="" *ngIf="!IsUserAuthenticated()">Sign in</a>
-          <a >Hello {{ this.GetUserName() }}</a>
-          <a type="button" (click) = "LogOutCurrentUser()" *ngIf="IsUserAuthenticated()"> Log  out</a>
+          <a *ngIf="IsUserAuthenticated()">Hello {{ this.GetUserName() }}</a>
+          <a (click) = "LogOutCurrentUser()" *ngIf="IsUserAuthenticated()"> Log  out</a>
         </mat-nav-list>
       </mat-sidenav>
     </mat-sidenav-container>

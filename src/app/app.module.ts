@@ -19,18 +19,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';  
 import { NgxPrintModule } from 'ngx-print';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule } from '@angular/material/form-field'
-import {MatSelectModule} from '@angular/material/select';
 
-//MatSidenavModule, MatListModule, MatButtonModule, MatIconModule
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReaderViewComponent } from './reader/reader-view/reader-view.component';
+import { MaterialComponentsModule} from './material-component/material-components.module'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,28 +35,21 @@ import {MatSelectModule} from '@angular/material/select';
     CreateAccountComponent,
     PurchaseComponent,
     PurchaseHistoryComponent,
+    ReaderViewComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule,
     BrowserAnimationsModule,
-    MatCardModule,
     FlexLayoutModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
     ToastrModule.forRoot(),
     ModalModule.forRoot(),  
     NgxPrintModule,
+    MaterialComponentsModule,
     RouterModule.forRoot([
-      {path: '', component: SearchbookComponent},
-      {path: 'sign-in', component: SignInComponent},
+      // {path: '', component: SearchbookComponent},
+      {path: '', component: SignInComponent},
       {path: 'create-book', component: CreateBookComponent},
       {path: 'author', component : AuthorComponent},
       {path: 'create-account', component : CreateAccountComponent},

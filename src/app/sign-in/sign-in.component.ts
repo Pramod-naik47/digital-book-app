@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { NotificationService } from '../services/notificationservice/notification.service'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserTypes } from '../models/user-type';
 
 @Component({
   selector: 'app-sign-in',
@@ -32,6 +33,11 @@ export class SignInComponent implements OnInit {
     isAuthenticated : false,
     message : ''
   };
+  
+  userTypes: UserTypes[] = [
+    {value : "Author", displayLabel : "Author"},
+    {value: "Reader", displayLabel : "Reader"}
+  ]
 
   constructor(private loginService : LoginService, 
               private router : Router,
@@ -63,7 +69,7 @@ export class SignInComponent implements OnInit {
       if (this.currentUserType === 'Author'){
         this.router.navigate(['/author']);
       } else {
-        this.router.navigate([''])
+        this.router.navigate(['/purchase-history'])
       }
     },
     error => {

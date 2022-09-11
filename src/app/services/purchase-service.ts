@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Book } from '../models/book-model';
@@ -17,29 +17,35 @@ export class PaymentService {
     return this.http.post<Payment>(url, payment);
   }
 
-  GetBookById(url: string, bookId: number): Observable<Book> {
+  GetBookById(url: string, bookId: number, token : string): Observable<Book> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("bookId", bookId);
-    return this.http.get<Book>(url, { params: queryParams });
+    return this.http.get<Book>(url, { params: queryParams, headers : this.GetHeader(token) });
   }
 
-  GetBookByIdForPayment(url: string, bookId: number): Observable<VBookPayment> {
+  GetBookByIdForPayment(url: string, bookId: number, token : string): Observable<VBookPayment> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("bookId", bookId);
-    return this.http.get<VBookPayment>(url, { params: queryParams });
+    return this.http.get<VBookPayment>(url, { params: queryParams, headers : this.GetHeader(token) });
   }
 
 
-  GetPymemtHistory(url: string, email : string): Observable<VBookPayment[]> {
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append("email", email);
-    return this.http.get<VBookPayment[]>(url, { params: queryParams });
+  GetPymemtHistory(url: string, token : string): Observable<VBookPayment[]> {
+    return this.http.get<VBookPayment[]>(url, {headers : this.GetHeader(token)});
   }
 
   
-  GetRefund(url: string, paymentId: number): Observable<Payment> {
+  GetRefund(url: string, paymentId: number, token : string): Observable<Payment> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("paymentId", paymentId);
-    return this.http.delete<Payment>(url, { params: queryParams });
+    return this.http.delete<Payment>(url, { params: queryParams, headers : this.GetHeader(token) });
   }
+
+  GetHeader(token: string): HttpHeaders {
+    return (new HttpHeaders(
+        {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json'
+        }))
+}
 }

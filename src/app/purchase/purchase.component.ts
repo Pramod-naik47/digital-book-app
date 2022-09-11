@@ -44,7 +44,7 @@ export class PurchaseComponent implements OnInit {
   }
 
   GetBookById(){
-    this.paymentService.GetBookById('https://localhost:7151/api/v1/digitalbooks/books/getBookById', this.paramBookId).
+    this.paymentService.GetBookById('https://localhost:7151/api/v1/digitalbooks/books/getBookById', this.paramBookId, this.token).
     subscribe(
       res => {
         this.bookObject = res;

@@ -54,6 +54,17 @@
                     Please enter password
                   </div>
             </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>User type</mat-label>
+                <mat-select [(ngModel)]="userObject.userType" name="userType" #userType="ngModel" required>
+                    <mat-option *ngFor="let type of userTypes" [value]="type.value">
+                        {{type.displayLabel}}
+                    </mat-option>
+                </mat-select>
+                <div class="error-message" *ngIf="(userType.touched || loginForm.submitted ) && userType.errors?.['required']">
+                    Please select user type
+                </div>
+            </mat-form-field>
             <button mat-raised-button type="submit" [disabled]="loginForm.invalid">Login</button>
         </form>
     </mat-card>
