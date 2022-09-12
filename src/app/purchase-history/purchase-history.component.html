@@ -9,7 +9,7 @@
     </div>  
     <div class="modal-body" id="divInvoice">
         <div >
-            <div align="center">
+            <!-- <div align="center">
                 <table padding="10" id="tableClass">
                     <tr>
                         <td style="width: 150px"> Book title</td>
@@ -20,6 +20,83 @@
                         <td style="width: 150px">{{ paymentObject.price }}</td>
                     </tr>
                 </table>
+            </div> -->
+            <div style="width : 100%; border: solid 3px green; border-radius: 2px; padding:  5px;">
+                <div class="col-md-12" align="left">
+                    <img src="../../assets/images/bookicon.png"/>
+                </div>
+                <hr/>
+                <br/><br/>
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-2">
+                        <span>billing to:</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-2">
+                        <span>Name:</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span>{{paymentObject.userName}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-2">
+                        <span>email:</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span>{{paymentObject.email}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-2">
+                        <span>Phone number:</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span>{{paymentObject.phoneNumber}}</span>
+                    </div>
+                </div>
+                <hr/><br/><br/>
+                <div class="row">
+                    <div class="col-md-4">
+                        <span>Book title : </span>
+                    </div>
+                    <div class="col-md-4">
+                        <span>{{ paymentObject.bookTitle }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <span>Publisher: </span>
+                    </div>
+                    <div class="col-md-4">
+                        <span>{{ paymentObject.publisher }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <span>Price: </span>
+                    </div>
+                    <div class="col-md-4">
+                        <span>{{ paymentObject.price }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <span>Payment mode: </span>
+                    </div>
+                    <div class="col-md-4">
+                        <span>Online</span>
+                    </div>
+                </div>
+                <br/><br/><hr>
+                <div class="row" align="center">
+                    <span>****Digital Book***</span>
+                </div>
             </div>
         </div>
     </div>
@@ -41,7 +118,7 @@
         <mat-icon>cancel</mat-icon>
     </button> 
     </div>  
-    <div class="modal-body" id="invoiceModel">
+    <div class="modal-body" id="readModel">
         <div >
             <div align="center">
                <p>{{ paymentObject.bookTitle }}</p>
@@ -92,9 +169,22 @@
                         <button mat-raised-button color="primary" (click)="ReadBook(readBook,  element.bookId)">Read book</button>
                     </td>
                 </ng-container>
-        
+
+                <ng-container matColumnDef="loading">
+                    <mat-footer-cell *matFooterCellDef colspan="6">
+                        Loading data.....
+                    </mat-footer-cell>
+                </ng-container>
+                <ng-container matColumnDef="noData">
+                    <mat-footer-cell *matFooterCellDef colspan="6">
+                        No records found
+                    </mat-footer-cell>
+                </ng-container>
+                
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': dataSource != null}"></mat-footer-row>
+                <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': !(dataSource != null && dataSource.data.length == 0)}"></mat-footer-row>
             </table>
             <mat-paginator [pageSizeOptions]="[5, 10, 15, 20, 40, 80]" [pageSize]="5" showFirstLastButtons></mat-paginator>
         </div>

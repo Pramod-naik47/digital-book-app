@@ -9,5 +9,8 @@ export interface VBookPayment {
     publishDate: Date
     publisher: string;
     paymentId: number;
-    paymentDate: Date
+    paymentDate: Date,
+    email :  string,
+    userName : string,
+    phoneNumber : number
 }

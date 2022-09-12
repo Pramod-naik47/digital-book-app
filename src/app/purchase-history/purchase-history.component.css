@@ -1,7 +1,17 @@
-#tableClass th, td {
-    padding: 15px;
-  }
+#tableClass th,
+td {
+  padding: 15px;
+}
 
-  table {
-    width: 100%;
-  }
+table {
+  width: 100%;
+}
+
+.hide {
+  display: none;
+}
+
+mat-footer-cell mat-footer-row {
+  justify-content: center;
+  font-style: italic;
+}

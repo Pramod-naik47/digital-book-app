@@ -30,7 +30,10 @@ export class PurchaseHistoryComponent implements OnInit {
     publishDate: new Date,
     publisher: '',
     paymentId: 0,
-    paymentDate: new Date
+    paymentDate: new Date,
+    email :  '',
+    userName : '',
+    phoneNumber : 0
   }
   message: any = '';
 

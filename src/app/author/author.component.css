@@ -1,0 +1,8 @@
+.hide {
+    display: none;
+}
+
+mat-footer-cell mat-footer-row {
+    justify-content: center;
+    font-style: italic;
+}
