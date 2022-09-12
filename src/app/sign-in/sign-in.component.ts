@@ -31,7 +31,8 @@ export class SignInComponent implements OnInit {
   token : any = {
     token : '',
     isAuthenticated : false,
-    message : ''
+    message : '',
+    statusCode : 0
   };
   
   userTypes: UserTypes[] = [
@@ -53,27 +54,31 @@ export class SignInComponent implements OnInit {
    .subscribe(
     response => {
       this.token = response;
-      this.notificationService.showSuccess(this.token.message, "Book app")
-      const decodedToken = this.jwtHelper.decodeToken(this.token.token);
+       if (this.token.statusCode == 1) {
+         this.notificationService.showSuccess(this.token.message, "Book app");
+         const decodedToken = this.jwtHelper.decodeToken(this.token.token);
 
-      this.isAuthenticated = this.token.isAuthenticated;
-      this.currentUserId = decodedToken.userId;
-      this.currentUserName = decodedToken.userName;
-      this.currentUserType = decodedToken.userType;
-      localStorage.setItem('token', this.token.token);
-      localStorage.setItem('currentUserId',  this.currentUserId);
-      localStorage.setItem('currentUserType', this.currentUserType);
-      localStorage.setItem('currentUserName', this.currentUserName);
-      localStorage.setItem('currentUserName', this.currentUserName);
-      localStorage.setItem('isUserAuthenticated', this.isAuthenticated ? "true" : "false");
-      if (this.currentUserType === 'Author'){
-        this.router.navigate(['/author']);
-      } else {
-        this.router.navigate(['/purchase-history'])
-      }
+         this.isAuthenticated = this.token.isAuthenticated;
+         this.currentUserId = decodedToken.userId;
+         this.currentUserName = decodedToken.userName;
+         this.currentUserType = decodedToken.userType;
+         localStorage.setItem('token', this.token.token);
+         localStorage.setItem('currentUserId', this.currentUserId);
+         localStorage.setItem('currentUserType', this.currentUserType);
+         localStorage.setItem('currentUserName', this.currentUserName);
+         localStorage.setItem('currentUserName', this.currentUserName);
+         localStorage.setItem('isUserAuthenticated', this.isAuthenticated ? "true" : "false");
+         if (this.currentUserType === 'Author') {
+           this.router.navigate(['/author']);
+         } else {
+           this.router.navigate(['/searchbook'])
+         }
+       } else {
+        this.notificationService.showError(this.token.message, "Book app");
+       }
     },
     error => {
-      console.log("error");
+      
     }
    )
   }

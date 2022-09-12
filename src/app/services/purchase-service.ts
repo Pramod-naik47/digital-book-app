@@ -13,8 +13,8 @@ import { Payment } from '../models/purchase';
 export class PaymentService {
   constructor(private http: HttpClient) { }
 
-  PurchaseBook(payment: Payment, url: string): Observable<Payment> {
-    return this.http.post<Payment>(url, payment);
+  PurchaseBook(payment: Payment, url: string, token : string): Observable<Payment> {
+    return this.http.post<Payment>(url, payment, { headers : this.GetHeader(token) });
   }
 
   GetBookById(url: string, bookId: number, token : string): Observable<Book> {

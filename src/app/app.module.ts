@@ -48,8 +48,8 @@ import { MaterialComponentsModule} from './material-component/material-component
     NgxPrintModule,
     MaterialComponentsModule,
     RouterModule.forRoot([
-      // {path: '', component: SearchbookComponent},
       {path: '', component: SignInComponent},
+      {path: 'searchbook', component: SearchbookComponent},
       {path: 'create-book', component: CreateBookComponent},
       {path: 'author', component : AuthorComponent},
       {path: 'create-account', component : CreateAccountComponent},

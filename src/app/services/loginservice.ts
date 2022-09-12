@@ -16,6 +16,14 @@ import { User } from '../models/loginmodel';
         return this.http.post<User>(this.baseUrl, user);
     }
 
+    ValidateLoggedInAuthor() : boolean {
+        return this.IsUserAuthenticated() == "true" && this.GetUserType() == "Author";
+    }
+
+    ValidateLoggedInReader() : boolean {
+        return this.IsUserAuthenticated() == "true" && this.GetUserType() == "Reader";
+    }
+
     LogoutCurrentUser(){
         localStorage.clear();
     }

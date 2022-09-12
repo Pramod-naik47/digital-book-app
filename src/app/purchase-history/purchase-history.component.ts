@@ -7,6 +7,10 @@ import { VBookPayment } from '../models/book-payment-model';
 import { NotificationService } from '../services/notificationservice/notification.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { LoginService } from '../services/loginservice';
+import { Router } from '@angular/router';
+import { jsPDF} from 'jspdf'
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-purchase-history',
@@ -26,35 +30,31 @@ export class PurchaseHistoryComponent implements OnInit {
     publishDate: new Date,
     publisher: '',
     paymentId: 0,
-    email: '',
     paymentDate: new Date
   }
   message: any = '';
 
-  displayedColumns: string[] = ['bookTitle', 'price', 'purchaseDate', 'actions'];
+  displayedColumns: string[] = ['bookLogo','bookTitle', 'publisher', 'price', 'purchaseDate', 'actions'];
   modalRef!: BsModalRef;
   constructor(private purchaseService: PaymentService,
     private modalService: BsModalService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    private loginService : LoginService,
+    private router : Router) { }
   token = '';
   dataSource!: MatTableDataSource<any>;
-  dataSourceWithPageSize = new  MatTableDataSource(this.payments);
-
-  @ViewChild('paginator') paginator!: MatPaginator;
-  @ViewChild('paginatorPageSize') paginatorPageSize!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   pageSizes = [3, 5, 7];
 
-  ngAfterViewInit() {
-    
-  }
-
   ngOnInit(): void {
-    this.token = localStorage.getItem('token')!;
-    this.GetPaymentHistory();
-    
+    if (!this.loginService.ValidateLoggedInReader()){
+      this.router.navigate([''])
+    } else {
+      this.token = localStorage.getItem('token')!;
+      this.GetPaymentHistory();
+    }
   }
-
 
   GetPaymentHistory() {
     this.purchaseService.GetPymemtHistory('https://localhost:7151/api/v1/digitalbooks/books/getPaymentHistory', this.token).
@@ -64,13 +64,9 @@ export class PurchaseHistoryComponent implements OnInit {
           console.log(this.payments)
           this.dataSource = new MatTableDataSource(this.payments);
           this.dataSource.paginator = this.paginator;
-          this.dataSourceWithPageSize.paginator = this.paginatorPageSize;
         }
       )
   }
-
-
-
 
   OpenInvoiceModel(template: TemplateRef<any>, bookId: number) {
     this.purchaseService.GetBookByIdForPayment('https://localhost:7151/api/v1/digitalbooks/books/getBookByIdForPayment', bookId, this.token).
@@ -84,6 +80,23 @@ export class PurchaseHistoryComponent implements OnInit {
           );
         }
       )
+  }
+
+  DownloadInvoice() {
+    let pdf = new jsPDF();
+    let data = document.getElementById("divInvoice");
+    if (data != null) {
+      html2canvas(data).then(
+        canvas => {
+          const contentDataURL = canvas.toDataURL('image/png')
+          let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+          var width = pdf.internal.pageSize.getWidth();
+          var height = canvas.height * width / canvas.width;
+          pdf.addImage(contentDataURL, 'PNG', 0, 0, width, height)
+          pdf.save('invoice.pdf'); // Generated PDF
+        }
+      )
+    }
   }
 
   GetRefund(paymentId: number, paymentDate: Date) {

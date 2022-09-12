@@ -1,4 +1,4 @@
-<div class="container border " style="padding: 30px; margin-top: 8%">
+<!-- <div class="container border " style="padding: 30px; margin-top: 8%">
     <div class="row col-md-12">
         <h2 class="text-info"> {{this.addOrUpdateText}}</h2>
     </div>
@@ -61,4 +61,55 @@
             </div>
         </div>
     </form>
+</div> -->
+
+<div  fxLayoutAlign="center center" style="margin-top: 2%;"  >
+    <mat-card  fxFlex="50">
+        <mat-toolbar color="primary">{{this.addOrUpdateText}}</mat-toolbar>
+        <form class="login-form" fxLayoutAlign="streatch" fxLayout="column" #createBookFrom="ngForm">
+            <mat-form-field appearance="fill">
+                <mat-label>Book Title</mat-label>
+                <input matInput  type="text"  name="bookTitle" [(ngModel)]="bookObject.bookTitle" #bookTitle="ngModel" required>
+                <div class="error-message" *ngIf="(bookTitle.touched || createBookFrom.submitted ) && bookTitle.errors?.['required']">
+                    Please enter book title
+                </div>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Category</mat-label>
+                <input matInput type="text" name="category" [(ngModel)]="bookObject.category" #category="ngModel" required>
+                <div class="error-message" *ngIf="(category.touched || createBookFrom.submitted ) && category.errors?.['required']">
+                    Please enter category
+                </div>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Price</mat-label>
+                <input matInput type="number"  name="price" [(ngModel)]="bookObject.price" #price="ngModel" required>
+                <div class="error-message" *ngIf="(price.touched || createBookFrom.submitted ) && price.errors?.['required']">
+                    Please enter price
+                </div>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Publisher</mat-label>
+                <input matInput type="text" name="publisher" [(ngModel)]="bookObject.publisher" #publisher="ngModel" required>
+                <div class="error-message" *ngIf="(publisher.touched || createBookFrom.submitted ) && publisher.errors?.['required']">
+                    Please enter publisher
+                </div>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Content</mat-label>
+                <input matInput type="text"  name="content" [(ngModel)]="bookObject.content" #content="ngModel" required>
+                <div class="error-message" *ngIf="(content.touched || createBookFrom.submitted ) && content.errors?.['required']">
+                    Please enter book content
+                </div>
+            </mat-form-field>
+            
+            <section class="example-section">
+                <mat-checkbox class="example-margin" name="active" [(ngModel)]="bookObject.active">Lock</mat-checkbox>
+              </section>
+            <button mat-raised-button color="primary" [disabled]="createBookFrom.invalid" type="submit" (click)= 'CreateBook()'> {{this.addOrUpdateText}}</button>
+            <br/>
+            <button mat-raised-button color="primary" [routerLink] = "['/author']"> Back</button>
+        </form>
+    </mat-card>
 </div>

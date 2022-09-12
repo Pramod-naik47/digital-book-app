@@ -3,6 +3,7 @@ import { Book } from '../models/book-model';
 import { BookService } from '../services/book-service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotificationService } from '../services/notificationservice/notification.service';
+import { LoginService } from '../services/loginservice';
 
 @Component({
   selector: 'app-create-book',
@@ -29,19 +30,24 @@ export class CreateBookComponent implements OnInit {
   message : any = '';
   constructor(private bookSerive: BookService, private router: Router,
               private activatedRout: ActivatedRoute,
-              private notificationService : NotificationService) { }
+              private notificationService : NotificationService,
+              private loginService : LoginService) { }
 
   ngOnInit(): void {
-    this.token = localStorage.getItem('token')!;
-    this.id = this.activatedRout.snapshot.params['bookId'];
-    this.isAddMode = !this.id;
-    if (this.isAddMode) {
-      this.addOrUpdateText = "Create Book";
+    if (!this.loginService.ValidateLoggedInAuthor()) {
+      this.router.navigate([''])
     } else {
-      this.addOrUpdateText = "Update book";
+      this.token = localStorage.getItem('token')!;
+      this.id = this.activatedRout.snapshot.params['bookId'];
+      this.isAddMode = !this.id;
+      if (this.isAddMode) {
+        this.addOrUpdateText = "Create Book";
+      } else {
+        this.addOrUpdateText = "Update book";
+      }
+       
+      this.GetBookById()
     }
-     
-    this.GetBookById()
   }
 
   CreateBook() {

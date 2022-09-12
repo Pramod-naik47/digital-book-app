@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { VBook2User } from '../models/book2-user-model';
+import { LoginService } from '../services/loginservice';
 import { SearchBooksService } from '../services/searchbooks.services';
 
 @Component({
@@ -10,7 +14,7 @@ import { SearchBooksService } from '../services/searchbooks.services';
 export class SearchbookComponent implements OnInit {
   title = "Search books";
   books: VBook2User[] = [];
-  criteria :  VBook2User = {
+  criteria: VBook2User = {
     bookId: 0,
     bookTitle: '',
     category: '',
@@ -23,22 +27,37 @@ export class SearchbookComponent implements OnInit {
     publisher: '',
     userName: '',
     userType: '',
-    userId : 0,
+    userId: 0,
     email: '',
     phoneNumber: 0
-};
+  };
 
-  constructor(private searchBooksService : SearchBooksService) { }
+  displayedColumns: string[] = ['bookLogo','bookTitle', 'category', 'price', 'publisher', 'userName',  'publishDate', 'createdDate', 'actions'];
+  dataSource!: MatTableDataSource<any>;
+  token = '';
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  constructor(private searchBooksService: SearchBooksService, 
+             private loginService : LoginService,
+             private router : Router,) { }
 
   ngOnInit(): void {
+    if (!this.loginService.ValidateLoggedInReader()){
+      this.router.navigate([''])
+    } else {
+      this.token = localStorage.getItem('token')!;
     this.onSearchSubmit()
+    }
   }
 
-  onSearchSubmit(){
-      this.searchBooksService.SearchBook(this.criteria)
+ 
+
+  onSearchSubmit() {
+    this.searchBooksService.SearchBook(this.criteria, this.token)
       .subscribe(
         response => {
-           this.books = response;
+          this.books = response;
+          this.dataSource = new MatTableDataSource(this.books);
+          this.dataSource.paginator = this.paginator;
         }
       );
   }

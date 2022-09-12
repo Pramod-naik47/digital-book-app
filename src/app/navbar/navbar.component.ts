@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   }
 
   GetUserName() : any {
-    return this.GetUserType() == "Author" ? this.loginService.GetUserName() : "Guest" ;
+    return  this.loginService.GetUserName();
   }
 
   IsUserAuthenticated(): boolean {

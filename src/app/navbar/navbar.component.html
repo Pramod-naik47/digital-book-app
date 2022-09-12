@@ -33,10 +33,12 @@
         </button>
         <span>DigitalBookApp</span>
         <span class="menu-spacer"></span>
-        <div fxShow="true" fxHide.lt-md>
+        <div fxShow="true" fxHide.lt-md class="navOptions">
           <a [routerLink] = "['/create-account']"   mat-button *ngIf="!IsUserAuthenticated()"  routerLinkActive="router-link-active no-border">Signup</a>
           <a [routerLink] = "['/sign-in']"   mat-button *ngIf="!IsUserAuthenticated()"  routerLinkActive="router-link-active no-border">Sign in</a>
-          <a  *ngIf="IsUserAuthenticated()">Hello {{ this.GetUserName() }}</a>
+          <a class="navUserName" *ngIf="IsUserAuthenticated()">Hello {{ this.GetUserName() }}</a>
+          <a  mat-button [routerLink] = "['/purchase-history']" *ngIf="IsUserAuthenticated() && GetUserType() == 'Reader'"  routerLinkActive="router-link-active no-border"> My books</a>
+          <a  mat-button [routerLink] = "['/searchbook']" *ngIf="IsUserAuthenticated() && GetUserType() == 'Reader'"  routerLinkActive="router-link-active no-border"> Buy books</a>
           <a  mat-button (click) = "LogOutCurrentUser()" *ngIf="IsUserAuthenticated()"  routerLinkActive="router-link-active no-border"> Log  out</a>
         </div>
       </mat-toolbar-row>
@@ -49,6 +51,8 @@
           <a [routerLink] = "['/create-account']"  *ngIf="!IsUserAuthenticated()">Signup</a>
           <a [routerLink] = "['/sign-in']"  href="" *ngIf="!IsUserAuthenticated()">Sign in</a>
           <a *ngIf="IsUserAuthenticated()">Hello {{ this.GetUserName() }}</a>
+          <a [routerLink] = "['/purchase-history']"  *ngIf="IsUserAuthenticated() && GetUserType() == 'Reader'"> My books</a>
+          <a [routerLink] = "['/purchase-history']"  *ngIf="IsUserAuthenticated() && GetUserType() == 'Reader' "> Buy books</a>
           <a (click) = "LogOutCurrentUser()" *ngIf="IsUserAuthenticated()"> Log  out</a>
         </mat-nav-list>
       </mat-sidenav>

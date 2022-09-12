@@ -10,6 +10,8 @@ import {MatFormFieldModule } from '@angular/material/form-field'
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         MatButtonModule,
         MatCardModule,
         MatPaginatorModule,
+        MatCheckboxModule,
+        MatSlideToggleModule
     ],
     exports: [
         MatInputModule,
@@ -39,6 +43,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         MatButtonModule,
         MatCardModule,
         MatPaginatorModule,
+        MatCheckboxModule,
+        MatSlideToggleModule
     ],
   })
   export class MaterialComponentsModule {}

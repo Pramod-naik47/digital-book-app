@@ -4,6 +4,7 @@ import { Payment } from '../models/purchase';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PaymentService } from '../services/purchase-service';
 import { NotificationService } from '../services/notificationservice/notification.service';
+import { LoginService } from '../services/loginservice';
 
 @Component({
   selector: 'app-purchase',
@@ -26,7 +27,6 @@ export class PurchaseComponent implements OnInit {
 
   paymentObject: Payment = {
     paymentId: 0,
-    email: '',
     bookId: 0,
     paymentDate : new Date
   };
@@ -35,12 +35,17 @@ export class PurchaseComponent implements OnInit {
   constructor(private router : Router, 
               private activatedRoute : ActivatedRoute, 
               private paymentService : PaymentService,
-              private notificationService : NotificationService ) { }
+              private notificationService : NotificationService,
+              private loginService : LoginService ) { }
 
   ngOnInit(): void {
-    this.paramBookId = this.activatedRoute.snapshot.params['bookId']
-    this.token = localStorage.getItem('token')!; 
-    this.GetBookById();
+    if (!this.loginService.ValidateLoggedInReader()) {
+      this.router.navigate([''])
+    } else {
+      this.paramBookId = this.activatedRoute.snapshot.params['bookId']
+      this.token = localStorage.getItem('token')!;
+      this.GetBookById();
+    }
   }
 
   GetBookById(){
@@ -50,7 +55,6 @@ export class PurchaseComponent implements OnInit {
         this.bookObject = res;
         this.paymentObject = {
           paymentId: 0,
-          email: '',
           bookId: res.bookId,
           paymentDate : new Date
         };
@@ -59,12 +63,12 @@ export class PurchaseComponent implements OnInit {
   }
 
   PurchaseBook(): void {
-    this.paymentService.PurchaseBook(this.paymentObject, 'https://localhost:7151/api/v1/digitalbooks/books/purchaseBook')
+    this.paymentService.PurchaseBook(this.paymentObject, 'https://localhost:7151/api/v1/digitalbooks/books/purchaseBook', this.token)
     .subscribe(
       res => {
         this.message = res;
         this.notificationService.showSuccess("Purchase successfull", "Book app");
-        this.router.navigate([''])
+        this.router.navigate(['purchase-history'])
       }
     )
   }

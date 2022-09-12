@@ -13,4 +13,8 @@ import { User } from '../models/loginmodel';
     CreateAccount(user: User, url : string):Observable<User> {
         return this.http.post<User>(url, user);
     }
+
+    ValidateExistingUser(user: User, url : string):Observable<User> {
+      return this.http.post<User>(url, user);
+  }
   }
