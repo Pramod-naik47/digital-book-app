@@ -21,7 +21,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxPrintModule } from 'ngx-print';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReaderViewComponent } from './reader/reader-view/reader-view.component';
 import { MaterialComponentsModule} from './material-component/material-components.module'
 
 @NgModule({
@@ -35,7 +34,6 @@ import { MaterialComponentsModule} from './material-component/material-component
     CreateAccountComponent,
     PurchaseComponent,
     PurchaseHistoryComponent,
-    ReaderViewComponent,
   ],
   imports: [
     BrowserModule,
