@@ -12,6 +12,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSortModule } from "@angular/material/sort";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
         MatCardModule,
         MatPaginatorModule,
         MatCheckboxModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatSortModule
     ],
     exports: [
         MatInputModule,
@@ -44,7 +46,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
         MatCardModule,
         MatPaginatorModule,
         MatCheckboxModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatSortModule
     ],
   })
   export class MaterialComponentsModule {}

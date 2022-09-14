@@ -15,10 +15,6 @@ import { VBook2User } from '../models/book2-user-model';
         return this.http.post<Book>(browseUrl, book, {headers : this.GetHeader(token)});
       }
 
-    GetBookForAuthor(url : string, token : string):Observable<VBook2User[]> {
-        return this.http.get<VBook2User[]>(url, {headers : this.GetHeader(token)})
-    }
-
     DeleteBook(url : string, bookId : number, token : string):Observable<Book>{
       let queryParams = new HttpParams();
         queryParams = queryParams.append("bookId", bookId);
@@ -34,14 +30,6 @@ import { VBook2User } from '../models/book2-user-model';
     UpdateBook(book: Book, browseUrl : string, token : string):Observable<Book> {
         return this.http.put<Book>(browseUrl, book, {headers : this.GetHeader(token)});
       }
-
-      // LockOrUnLockBook(bookId : number, isActive : boolean, browseUrl : string, token : string):Observable<Book> {
-      //   let queryParams = new HttpParams();
-      //   queryParams = queryParams.append("bookId", bookId);
-      //   queryParams = queryParams.append("isActive", isActive);
-
-      //   return this.http.put<Book>(browseUrl, {headers : this.GetHeader(token), queryParams : queryParams});
-      // }
 
     GetHeader(token: string): HttpHeaders {
         return (new HttpHeaders(

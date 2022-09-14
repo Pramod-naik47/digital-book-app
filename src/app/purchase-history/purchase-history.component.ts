@@ -11,6 +11,7 @@ import { LoginService } from '../services/loginservice';
 import { Router } from '@angular/router';
 import { jsPDF} from 'jspdf'
 import html2canvas from 'html2canvas';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-purchase-history',
@@ -47,6 +48,7 @@ export class PurchaseHistoryComponent implements OnInit {
   token = '';
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort! : MatSort;
 
   pageSizes = [3, 5, 7];
 
@@ -67,6 +69,7 @@ export class PurchaseHistoryComponent implements OnInit {
           console.log(this.payments)
           this.dataSource = new MatTableDataSource(this.payments);
           this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
         }
       )
   }

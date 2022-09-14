@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Book } from '../models/book-model';
 import { VBook2User } from '../models/book2-user-model';
+import { SearchBookFilterComponent } from '../search-book-filter/search-book-filter.component';
 import { BookService } from '../services/book-service';
 import { LoginService } from '../services/loginservice';
 import { NotificationService } from '../services/notificationservice/notification.service';
@@ -38,6 +40,8 @@ export class AuthorComponent implements OnInit {
   displayedColumns: string[] = ['bookLogo', 'bookTitle', 'category', 'price', 'content', 'publisher',  'publishDate', 'createdDate', 'actions'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(SearchBookFilterComponent) searchBookComponent! : SearchBookFilterComponent
 
   constructor(private bookService: BookService,
     private notificationService: NotificationService,
@@ -49,19 +53,15 @@ export class AuthorComponent implements OnInit {
       this.router.navigate([''])
     } else {
       this.token = localStorage.getItem('token')!;
-      this.GetBookForAuthor();
+      this.searchBookComponent.onSearchSubmit();
     }
   }
 
-  GetBookForAuthor() {
-    this.bookService.GetBookForAuthor('https://localhost:7151/api/v1/digitalbooks/author/getBooksForAuthor', this.token)
-      .subscribe(
-        response => {
-          this.books = response;
-          this.dataSource = new MatTableDataSource(this.books);
-          this.dataSource.paginator = this.paginator;
-        }
-      )
+  OnSearchSubmitted(books : VBook2User[]){
+    this.books = books;
+    this.dataSource = new MatTableDataSource(this.books);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   DeleteBook(bookId: number) {
@@ -69,8 +69,8 @@ export class AuthorComponent implements OnInit {
       .subscribe(
         response => {
           this.message = response;
-          this.GetBookForAuthor();
           this.notificationService.showSuccess(this.message.join(''), "Book app")
+          this.searchBookComponent.onSearchSubmit();
         }
       )
   }

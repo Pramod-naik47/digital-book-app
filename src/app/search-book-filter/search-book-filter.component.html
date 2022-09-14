@@ -1,0 +1,27 @@
+<div  fxLayoutAlign="center center" style="margin-top: 2%;"  >
+    <mat-card  fxFlex="50">
+        <form fxLayoutAlign="streatch" fxLayout="column" (ngSubmit)="onSearchSubmit()">
+            <mat-form-field appearance="fill">
+                <mat-label>Book Title</mat-label>
+                <input matInput  type="text" name="bookTitle" [(ngModel)]="criteria.bookTitle">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Author</mat-label>
+                <input matInput type="text" name="author" [(ngModel)]="criteria.userName">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Category</mat-label>
+                <input matInput type="text" name="category" placeholder="Category" [(ngModel)]="criteria.category">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Publisher</mat-label>
+                <input matInput type="text" name="publisher"  [(ngModel)]="criteria.publisher">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Publisher</mat-label>
+                <input matInput type="number"  name="bookPrice" [(ngModel)]="criteria.price">
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">Search</button>
+        </form>
+    </mat-card>
+</div>
