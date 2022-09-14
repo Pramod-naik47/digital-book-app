@@ -18,7 +18,6 @@ export class SearchBooksService {
 
   //Get all books
   SearchBook(serachCriteria: VBook2User, token : string):Observable<VBook2User[]>{
-
     let queryParams = new HttpParams();
       queryParams = queryParams.append("bookTitle",serachCriteria.bookTitle);
       queryParams = queryParams.append("category",serachCriteria.category);
@@ -37,7 +36,7 @@ export class SearchBooksService {
         } else if (this.loginService.GetUserType() == "Reader") {
           this.baseUrl = 'https://localhost:7151/api/v1/digitalbooks/books/search';
         }
-        
+
       return this.http.get<VBook2User[]>(this.baseUrl,{params:queryParams, headers : header});
   }
 }

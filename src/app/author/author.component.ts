@@ -53,7 +53,6 @@ export class AuthorComponent implements OnInit {
       this.router.navigate([''])
     } else {
       this.token = localStorage.getItem('token')!;
-      this.searchBookComponent.onSearchSubmit();
     }
   }
 
