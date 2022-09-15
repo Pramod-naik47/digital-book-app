@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 import { Book } from '../models/book-model';
 import { VBook2User } from '../models/book2-user-model';
 import { SearchBookFilterComponent } from '../search-book-filter/search-book-filter.component';
-import { BookService } from '../services/book-service';
-import { LoginService } from '../services/loginservice';
+import { BookService } from '../services/book/book.service';
+import { LoginService } from '../services/login/login.service';
 import { NotificationService } from '../services/notificationservice/notification.service';
 
 @Component({
@@ -56,11 +56,15 @@ export class AuthorComponent implements OnInit {
     }
   }
 
-  OnSearchSubmitted(books : VBook2User[]){
-    this.books = books;
-    this.dataSource = new MatTableDataSource(this.books);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  OnSearchSubmitted(books: VBook2User[]) {
+    if (books !== null) {
+      this.books = books;
+      this.dataSource = new MatTableDataSource(this.books);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    } else {
+      this.dataSource = new MatTableDataSource(this.books);
+    }
   }
 
   DeleteBook(bookId: number) {

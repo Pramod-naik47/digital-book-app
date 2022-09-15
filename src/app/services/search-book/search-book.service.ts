@@ -1,15 +1,13 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { VBook2User } from '../models/book2-user-model';
-import { LoginService } from './loginservice';
+import { VBook2User } from 'src/app/models/book2-user-model';
+import { LoginService } from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SearchBooksService {
-  
- 
+export class SearchBookService {
 
   constructor(private http: HttpClient, 
     private loginService : LoginService) { }

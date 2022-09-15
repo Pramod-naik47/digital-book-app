@@ -1,13 +1,13 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Book } from '../models/book-model';
 import { Payment } from '../models/purchase';
-import { PaymentService } from '../services/purchase-service';
+import { PurchaseService } from '../services/purchase/purchase.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { VBookPayment } from '../models/book-payment-model';
 import { NotificationService } from '../services/notificationservice/notification.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { LoginService } from '../services/loginservice';
+import { LoginService } from '../services/login/login.service';
 import { Router } from '@angular/router';
 import { jsPDF} from 'jspdf'
 import html2canvas from 'html2canvas';
@@ -40,7 +40,7 @@ export class PurchaseHistoryComponent implements OnInit {
 
   displayedColumns: string[] = ['bookLogo','bookTitle', 'publisher', 'price', 'purchaseDate', 'actions'];
   modalRef!: BsModalRef;
-  constructor(private purchaseService: PaymentService,
+  constructor(private purchaseService: PurchaseService,
     private modalService: BsModalService,
     private notificationService: NotificationService,
     private loginService : LoginService,
@@ -54,7 +54,7 @@ export class PurchaseHistoryComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.loginService.ValidateLoggedInReader()){
-      this.router.navigate([''])
+       this.router.navigate([''])
     } else {
       this.token = localStorage.getItem('token')!;
       this.GetPaymentHistory();
@@ -65,11 +65,15 @@ export class PurchaseHistoryComponent implements OnInit {
     this.purchaseService.GetPymemtHistory('https://localhost:7151/api/v1/digitalbooks/books/getPaymentHistory', this.token).
       subscribe(
         res => {
-          this.payments = res;
-          console.log(this.payments)
-          this.dataSource = new MatTableDataSource(this.payments);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
+          debugger;
+          if (res != null) {
+            this.payments = res;
+            this.dataSource = new MatTableDataSource(this.payments);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+          } else {
+            this.dataSource = new MatTableDataSource(this.payments)
+          }
         }
       )
   }

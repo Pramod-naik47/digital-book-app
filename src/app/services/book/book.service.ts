@@ -1,15 +1,14 @@
-import { HttpClient, HttpParams ,HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Book } from '../models/book-model';
-import { VBook2User } from '../models/book2-user-model';
+import { Book } from 'src/app/models/book-model';
 
 @Injectable({
-    providedIn: 'root'
-  })
-  
-  export class BookService {
-    constructor(private http: HttpClient) { }
+  providedIn: 'root'
+})
+export class BookService {
+
+  constructor(private http: HttpClient) { }
 
     CreateBook(book: Book, browseUrl : string, token : string):Observable<Book> {
         return this.http.post<Book>(browseUrl, book, {headers : this.GetHeader(token)});
@@ -31,6 +30,14 @@ import { VBook2User } from '../models/book2-user-model';
         return this.http.put<Book>(browseUrl, book, {headers : this.GetHeader(token)});
       }
 
+      // LockOrUnLockBook(bookId : number, isActive : boolean, browseUrl : string, token : string):Observable<Book> {
+      //   let queryParams = new HttpParams();
+      //   queryParams = queryParams.append("bookId", bookId);
+      //   queryParams = queryParams.append("isActive", isActive);
+
+      //   return this.http.put<Book>(browseUrl, {headers : this.GetHeader(token), queryParams : queryParams});
+      // }
+
     GetHeader(token: string): HttpHeaders {
         return (new HttpHeaders(
             {
@@ -38,4 +45,4 @@ import { VBook2User } from '../models/book2-user-model';
                 'Content-Type': 'application/json'
             }))
     }
-  }
+}

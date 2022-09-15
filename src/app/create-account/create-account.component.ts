@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/loginmodel';
-import { CreateAccountService } from '../services/create-account-service';
+import { CreateAccountService } from '../services/create-account/create-account.service';
 import { Router } from '@angular/router';
 import { UserTypes } from '../models/user-type';
 import { NotificationService } from '../services/notificationservice/notification.service';
@@ -58,7 +58,5 @@ export class CreateAccountComponent implements OnInit {
           }
         }
       )
-
-
   }
 }

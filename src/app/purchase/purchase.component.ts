@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../models/book-model';
 import { Payment } from '../models/purchase';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PaymentService } from '../services/purchase-service';
+import { PurchaseService } from '../services/purchase/purchase.service';
 import { NotificationService } from '../services/notificationservice/notification.service';
-import { LoginService } from '../services/loginservice';
+import { LoginService } from '../services/login/login.service';
 
 @Component({
   selector: 'app-purchase',
@@ -34,7 +34,7 @@ export class PurchaseComponent implements OnInit {
   message : any = '';
   constructor(private router : Router, 
               private activatedRoute : ActivatedRoute, 
-              private paymentService : PaymentService,
+              private paymentService : PurchaseService,
               private notificationService : NotificationService,
               private loginService : LoginService ) { }
 

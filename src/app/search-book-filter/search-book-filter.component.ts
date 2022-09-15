@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { VBook2User } from '../models/book2-user-model';
-import { LoginService } from '../services/loginservice';
-import { SearchBooksService } from '../services/searchbooks.services';
+import { LoginService } from '../services/login/login.service';
+import { SearchBookService } from '../services/search-book/search-book.service';
 
 @Component({
   selector: 'app-search-book-filter',
@@ -12,7 +12,7 @@ import { SearchBooksService } from '../services/searchbooks.services';
 
 export class SearchBookFilterComponent implements OnInit {
 
-  constructor(private searchBooksService: SearchBooksService, 
+  constructor(private searchBooksService: SearchBookService, 
               private loginService : LoginService,
               private router : Router,) { }
   

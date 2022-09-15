@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/loginmodel';
-import { LoginService } from '../services/loginservice';
+import { LoginService } from '../services/login/login.service';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { NotificationService } from '../services/notificationservice/notification.service'

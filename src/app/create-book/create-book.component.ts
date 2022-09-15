@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../models/book-model';
-import { BookService } from '../services/book-service';
+import { BookService } from '../services/book/book.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NotificationService } from '../services/notificationservice/notification.service';
-import { LoginService } from '../services/loginservice';
+import { LoginService } from '../services/login/login.service';
 
 @Component({
   selector: 'app-create-book',

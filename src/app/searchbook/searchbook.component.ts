@@ -4,8 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { VBook2User } from '../models/book2-user-model';
-import { LoginService } from '../services/loginservice';
-import { SearchBooksService } from '../services/searchbooks.services';
+import { LoginService } from '../services/login/login.service';
+import { SearchBookService } from '../services/search-book/search-book.service';
 
 @Component({
   selector: 'app-OnSearchSubmitted',
@@ -38,7 +38,7 @@ export class SearchbookComponent implements OnInit {
   token = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort! : MatSort;
-  constructor(private searchBooksService: SearchBooksService, 
+  constructor(private searchBooksService: SearchBookService, 
              private loginService : LoginService,
              private router : Router) { }
 
@@ -51,9 +51,14 @@ export class SearchbookComponent implements OnInit {
   }
 
   OnSearchSubmitted(books : VBook2User[]){
-    this.books = books;
-    this.dataSource = new MatTableDataSource(this.books);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    if (books !== null) {
+      this.books = books;
+      this.dataSource = new MatTableDataSource(this.books);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    } else {
+      this.dataSource = new MatTableDataSource(this.books);
+    }
+   
   }
 }

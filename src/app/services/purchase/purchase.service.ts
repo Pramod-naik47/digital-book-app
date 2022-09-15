@@ -1,16 +1,15 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Book } from '../models/book-model';
-import { VBookPayment } from '../models/book-payment-model';
-import { User } from '../models/loginmodel';
-import { Payment } from '../models/purchase';
+import { Book } from 'src/app/models/book-model';
+import { VBookPayment } from 'src/app/models/book-payment-model';
+import { Payment } from 'src/app/models/purchase';
 
 @Injectable({
   providedIn: 'root'
 })
+export class PurchaseService {
 
-export class PaymentService {
   constructor(private http: HttpClient) { }
 
   PurchaseBook(payment: Payment, url: string, token : string): Observable<Payment> {
