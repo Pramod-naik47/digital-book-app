@@ -1,6 +1,4 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { Book } from '../models/book-model';
-import { Payment } from '../models/purchase';
 import { PurchaseService } from '../services/purchase/purchase.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { VBookPayment } from '../models/book-payment-model';

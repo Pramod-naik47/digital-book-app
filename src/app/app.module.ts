@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule} from '@angular/common/http';
@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchbookComponent } from './searchbook/searchbook.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { Route, RouterModule } from '@angular/router';
+import { ActivatedRoute, Route, RouterModule } from '@angular/router';
 import { AuthorComponent } from './author/author.component';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
@@ -59,6 +59,7 @@ import { SearchBookFilterComponent } from './search-book-filter/search-book-filt
     ])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

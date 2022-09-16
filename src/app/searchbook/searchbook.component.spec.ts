@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ToastrModule } from 'ngx-toastr';
 
 import { SearchbookComponent } from './searchbook.component';
 
@@ -8,7 +10,8 @@ describe('SearchbookComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchbookComponent ]
+      declarations: [ SearchbookComponent ],
+      imports : [HttpClientModule, ToastrModule.forRoot()]
     })
     .compileComponents();
 

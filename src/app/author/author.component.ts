@@ -3,7 +3,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Book } from '../models/book-model';
 import { VBook2User } from '../models/book2-user-model';
 import { SearchBookFilterComponent } from '../search-book-filter/search-book-filter.component';
 import { BookService } from '../services/book/book.service';
@@ -16,6 +15,9 @@ import { NotificationService } from '../services/notificationservice/notificatio
   styleUrls: ['./author.component.css']
 })
 export class AuthorComponent implements OnInit {
+  expectedData(expectedData: any) {
+    throw new Error('Method not implemented.');
+  }
   title = "Author list screen";
   books: VBook2User[] = [];
   criteria: VBook2User = {
@@ -35,6 +37,7 @@ export class AuthorComponent implements OnInit {
     email: '',
     phoneNumber: 0
   };
+
   token: string = '';
   message: any = '';
   displayedColumns: string[] = ['bookLogo', 'bookTitle', 'category', 'price', 'content', 'publisher',  'publishDate', 'createdDate', 'actions'];
@@ -77,16 +80,4 @@ export class AuthorComponent implements OnInit {
         }
       )
   }
-
-  // LockOrUnlockBook(bookId : number, isActive : boolean){
-  //   debugger;
-  //   console.log(isActive);
-  //   this.bookService.LockOrUnLockBook(bookId, isActive, "https://localhost:7151/api/v1/digitalbooks/author/LockOrUnlock", this.token)
-  //   .subscribe (
-  //     response => {
-  //       this.message = response;
-  //       this.notificationService.showSuccess(this.message.join(''), "Book app")
-  //     }
-  //   )
-  // }
 }
