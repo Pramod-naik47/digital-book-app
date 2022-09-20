@@ -1,27 +1,52 @@
 <div  fxLayoutAlign="center center" style="margin-top: 2%;"  >
-    <mat-card  fxFlex="50">
+    <mat-card  fxFlex="75">
         <form fxLayoutAlign="streatch" fxLayout="column" (ngSubmit)="onSearchSubmit()">
-            <mat-form-field appearance="fill">
-                <mat-label>Book Title</mat-label>
-                <input matInput  type="text" name="bookTitle" [(ngModel)]="criteria.bookTitle">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Author</mat-label>
-                <input matInput type="text" name="author" [(ngModel)]="criteria.userName">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Category</mat-label>
-                <input matInput type="text" name="category" placeholder="Category" [(ngModel)]="criteria.category">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Publisher</mat-label>
-                <input matInput type="text" name="publisher"  [(ngModel)]="criteria.publisher">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Publisher</mat-label>
-                <input matInput type="number"  name="bookPrice" [(ngModel)]="criteria.price">
-            </mat-form-field>
-            <button mat-raised-button color="primary" type="submit">Search</button>
+            <table width="100%">
+                <tr>
+                    <td>
+                        <mat-form-field appearance="fill" class="formFirld">
+                            <mat-label>Book Title</mat-label>
+                            <input matInput  type="text" name="bookTitle" [(ngModel)]="criteria.bookTitle">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Author</mat-label>
+                            <input matInput type="text" name="author" [(ngModel)]="criteria.userName">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Category</mat-label>
+                            <input matInput type="text" name="category" placeholder="Category" [(ngModel)]="criteria.category">
+                        </mat-form-field>
+                    </td>
+                   <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Publisher</mat-label>
+                        <input matInput type="text" name="publisher"  [(ngModel)]="criteria.publisher">
+                    </mat-form-field>
+                   </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Publisher</mat-label>
+                            <input matInput type="number"  name="bookPrice" [(ngModel)]="criteria.price">
+                        </mat-form-field>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td align="right">
+                        <button mat-raised-button color="primary" type="submit" (click)="ResetForm()">Reset &nbsp; <mat-icon>change_circle</mat-icon></button>&nbsp;&nbsp;&nbsp;
+                        <button mat-raised-button color="primary" type="submit">Search &nbsp; <mat-icon>policy</mat-icon></button>
+                    </td>
+                </tr>
+            </table>
         </form>
     </mat-card>
 </div>

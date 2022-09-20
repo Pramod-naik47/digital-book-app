@@ -55,4 +55,26 @@ export class SearchBookFilterComponent implements OnInit {
         }
       );
   }
+
+  ResetForm() {
+    this.criteria = {
+      bookId: 0,
+      bookTitle: '',
+      category: '',
+      price: 0,
+      content: '',
+      active: false,
+      createdDate: new Date,
+      modifiedDate: new Date,
+      publishDate: new Date,
+      publisher: '',
+      userName: '',
+      userType: '',
+      userId: 0,
+      email: '',
+      phoneNumber: 0
+    };
+    this.onSearchSubmit();
+
+  }
 }

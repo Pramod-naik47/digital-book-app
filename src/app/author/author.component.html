@@ -1,13 +1,20 @@
 <app-search-book-filter (booksResult)="OnSearchSubmitted($event)"></app-search-book-filter>
-<div class="container" style="margin-top: 2%">
-    <div class="row">
-        <div class="col-md-9"><h3 class="text-info">My Books</h3></div>
-        <div class="col-md-3">
-            <a class="btn btn-info form-control text-white" [routerLink] = "['/create-book']">Create New Book &nbsp;<i class="fa-regular fa-plus-large"></i></a>
-        </div>
-    </div>
+<div  style="margin-top: 2%">
+   
 <div  fxLayoutAlign="center center" style="margin-top: 2%;"  >
-    <mat-card fxFlex="100">
+    <mat-card fxFlex="75">
+        <table width="100%">
+            <tr>
+                <td align="left">
+                    <h3 class="text-primary">My Books</h3>
+                </td>
+                <td align="right">
+                    <a mat-raised-button color="primary" [routerLink] = "['/create-book']">
+                        Create New Book &nbsp;<mat-icon>add_circle</mat-icon>
+                    </a>
+                </td>
+            </tr>
+        </table>
         <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource"   style="width:100%" matSort>
                 <ng-container matColumnDef="bookLogo">

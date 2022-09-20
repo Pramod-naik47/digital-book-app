@@ -49,6 +49,7 @@ import { SearchBookFilterComponent } from './search-book-filter/search-book-filt
     MaterialComponentsModule,
     RouterModule.forRoot([
       {path: '', component: SignInComponent},
+      {path: 'sign-in', component : SignInComponent},
       {path: 'searchbook', component: SearchbookComponent},
       {path: 'create-book', component: CreateBookComponent},
       {path: 'author', component : AuthorComponent},
