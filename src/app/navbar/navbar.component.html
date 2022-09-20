@@ -52,7 +52,7 @@
           <a [routerLink] = "['/sign-in']"  href="" *ngIf="!IsUserAuthenticated()">Sign in</a>
           <a *ngIf="IsUserAuthenticated()">Hello {{ this.GetUserName() }}</a>
           <a [routerLink] = "['/purchase-history']"  *ngIf="IsUserAuthenticated() && GetUserType() == 'Reader'"> My books</a>
-          <a [routerLink] = "['/purchase-history']"  *ngIf="IsUserAuthenticated() && GetUserType() == 'Reader' "> Buy books</a>
+          <a [routerLink] = "['/searchbook']"  *ngIf="IsUserAuthenticated() && GetUserType() == 'Reader' "> Buy books</a>
           <a (click) = "LogOutCurrentUser()" *ngIf="IsUserAuthenticated()"> Log  out</a>
         </mat-nav-list>
       </mat-sidenav>

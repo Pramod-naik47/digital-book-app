@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToastrModule } from 'ngx-toastr';
+import { BookService } from '../services/book/book.service';
 
 import { AuthorComponent } from './author.component';
 
@@ -51,7 +52,10 @@ describe('AuthorComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ AuthorComponent ],
       imports : [HttpClientModule, ToastrModule.forRoot()],
-      schemas : [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
+      schemas : [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      providers : [
+        {provide : BookService, useValue : mockPostService}
+      ]
     })
     .compileComponents();
 
@@ -70,5 +74,7 @@ describe('AuthorComponent', () => {
     component.OnSearchSubmitted(component.books);
     expect(component.books).toBe(component.books);
   });
+
+  
 
 });
